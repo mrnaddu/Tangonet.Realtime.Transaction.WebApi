@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Tangonet.Realtime.Transaction.WebApi.Entities;
 
 namespace Tangonet.Realtime.Transaction.WebApi.Controllers
 {
