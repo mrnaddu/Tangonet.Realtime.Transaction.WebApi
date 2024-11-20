@@ -15,7 +15,8 @@
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5147",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ApiKey": "DtmK3eERuQ8mbRI8y3Ie8BDHwNEFwIX7mwrvkMVi"
       }
     },
     "Mock Lambda Test Tool": {

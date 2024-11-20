@@ -1,47 +1,17 @@
-using Microsoft.OpenApi.Models;
-using System.Reflection;
-using Tangonet.Realtime.Transaction.WebApi.Interfaces;
-using Tangonet.Realtime.Transaction.WebApi.Services;
+using Tangonet.Realtime.Transaction.WebApi;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+namespace Tangonet.Realtime.Transaction.WebApi;
+public class Program
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
+    public static void Main(string[] args)
     {
-        Title = "Transaction API",
-        Version = "v1",
-        Description = "API for managing real-time transactions"
-    });
-});
+        CreateHostBuilder(args).Build().Run();
+    }
 
-builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
-
-// Dependency Injection
-builder.Services.AddScoped<ITransactionAppService, TransactionAppService>();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Real-time Transaction API V1");
-        c.RoutePrefix = string.Empty;
-    });
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

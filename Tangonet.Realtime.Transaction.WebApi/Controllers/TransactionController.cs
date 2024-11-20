@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tangonet.Realtime.Transaction.WebApi.Dtos;
 using Tangonet.Realtime.Transaction.WebApi.Helpers;
@@ -7,6 +8,7 @@ using Tangonet.Realtime.Transaction.WebApi.Models;
 
 namespace Tangonet.Realtime.Transaction.WebApi.Controllers;
 
+[Authorize]
 [Route("/api/tangonet-real-time/")]
 [ApiController]
 public class TransactionController(
