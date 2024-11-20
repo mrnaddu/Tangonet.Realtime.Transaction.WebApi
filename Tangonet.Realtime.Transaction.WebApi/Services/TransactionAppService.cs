@@ -15,7 +15,9 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
         try
         {
-            var sampleResponse = SampleData.GetSampleResponse();
+            var sampleResponse = SampleData.GetSampleResponse(
+                fromDate, toDate);
+
             var transactions = sampleResponse.Transactions;
              
             var filteredTransactions = transactions.AsQueryable();
