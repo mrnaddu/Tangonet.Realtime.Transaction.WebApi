@@ -1,4 +1,5 @@
 ﻿using Tangonet.Realtime.Transaction.WebApi.Dtos;
+using Tangonet.Realtime.Transaction.WebApi.Helpers;
 
 namespace Tangonet.Realtime.Transaction.WebApi.Interfaces;
 
