@@ -21,7 +21,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
-builder.Services.AddAutoMapper(typeof(Program));
 
 // Dependency Injection
 builder.Services.AddScoped<ITransactionAppService, TransactionAppService>();
