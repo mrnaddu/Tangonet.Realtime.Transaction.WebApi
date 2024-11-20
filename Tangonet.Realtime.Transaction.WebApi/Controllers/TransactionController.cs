@@ -21,12 +21,7 @@ public class TransactionController(
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TransactionDto.ResponseDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
     public IActionResult GetAsync(
-    [Required] string fromDate,
-    string toDate,
-    string transactionId,
-    string maxCount,
-    string transactionState,
-    string terminalId)
+    [Required] string fromDate, string toDate, string transactionId, string maxCount, string transactionState, string terminalId)
     {
         string traceId = HttpContext.TraceIdentifier;
         _logger.LogInformation("Request processed. TraceId: {traceId}", traceId);
@@ -55,9 +50,9 @@ public class TransactionController(
                 validationErrors.Add($"Invalid request transaction state. Please use one of the following values: C, Y, P. {transactionState}");
             }
 
-            if (!string.IsNullOrWhiteSpace(terminalId) && !ValidationHelper.IsNumberFormat(terminalId))
+            if (!string.IsNullOrWhiteSpace(terminalId) && !ValidationHelper.IsAlphaNumericFormat(terminalId))
             {
-                validationErrors.Add($"Invalid request terminal id. Please use integer format. {terminalId}");
+                validationErrors.Add($"Invalid request terminal id. Please use alphanumeric format. {terminalId}");
             }
 
             if (!string.IsNullOrWhiteSpace(transactionId) && !ValidationHelper.IsGuidFormat(transactionId))
@@ -72,6 +67,43 @@ public class TransactionController(
 
             var response = _transactionAppService.GetTransactionAsync(
                 fromDate, toDate, transactionId, maxCount, transactionState, terminalId);
+
+            if (response == null || response.Transactions == null || response.Transactions.Count == 0)
+            {
+                var noResultsMessage = "Transaction not found for the specified criteria. Check the following inputs: ";
+
+                if (!ValidationHelper.IsDateFormat(fromDate))
+                {
+                    noResultsMessage += $"fromDate: {fromDate}; ";
+                }
+
+                if (!string.IsNullOrWhiteSpace(toDate) && !ValidationHelper.IsDateFormat(toDate))
+                {
+                    noResultsMessage += $"toDate: {toDate}; ";
+                }
+
+                if (!string.IsNullOrWhiteSpace(transactionId))
+                {
+                    noResultsMessage += $"transactionId: {transactionId}; ";
+                }
+
+                if (!string.IsNullOrWhiteSpace(transactionState))
+                {
+                    noResultsMessage += $"transactionState: {transactionState}; ";
+                }
+
+                if (!string.IsNullOrWhiteSpace(terminalId))
+                {
+                    noResultsMessage += $"terminalId: {terminalId}; ";
+                }
+
+                if (!string.IsNullOrWhiteSpace(maxCount))
+                {
+                    noResultsMessage += $"maxCount: {maxCount}; ";
+                }
+
+                return NotFound(ErrorResponse.NotFound(noResultsMessage.TrimEnd(';', ' '), traceId));
+            }
 
             return Ok(response);
         }

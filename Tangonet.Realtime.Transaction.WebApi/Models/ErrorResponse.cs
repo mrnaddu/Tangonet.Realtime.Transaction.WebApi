@@ -23,7 +23,7 @@ public class ErrorResponse
     }
     public static ErrorResponse NotFound(string message, string traceId)
     {
-        return new ErrorResponse(200, "TNTTS4004", message, traceId);
+        return new ErrorResponse(404, "TNTTS4004", message, traceId);
     }
     public static ErrorResponse Forbidden(string message, string traceId)
     {

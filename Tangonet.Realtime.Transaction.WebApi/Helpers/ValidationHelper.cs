@@ -12,6 +12,36 @@ public static class ValidationHelper
         return int.TryParse(number, out _);
     }
 
+    public static bool IsAlphaNumericFormat(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return false;
+        }
+
+        bool hasLetter = false;
+        bool hasDigit = false;
+
+        foreach (char c in input)
+        {
+            if (char.IsLetter(c))
+            {
+                hasLetter = true;
+            }
+            else if (char.IsDigit(c))
+            {
+                hasDigit = true;
+            }
+
+            if (hasLetter && hasDigit)
+            {
+                return true;
+            }
+        }
+
+        return false; 
+    }
+
     public static bool IsTransactionState(string transactionState)
     {
         if (string.IsNullOrEmpty(transactionState))

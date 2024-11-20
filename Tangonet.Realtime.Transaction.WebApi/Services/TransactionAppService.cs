@@ -9,7 +9,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
     private readonly ILogger<TransactionAppService> _logger = logger;
 
     public TransactionDto.ResponseDto GetTransactionAsync(
-    string fromDate, string toDate, string transactionId, string maxCount, string transactionState, string terminalId)
+        string fromDate, string toDate, string transactionId, string maxCount, string transactionState, string terminalId)
     {
         _logger.LogInformation("Received GetTransactionAsync request");
 
@@ -43,7 +43,6 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
                 if (!string.IsNullOrEmpty(toDate) && !DateTime.TryParse(toDate, out toDateParsed))
                 {
-                    _logger.LogWarning("toDate is not in a valid format. Defaulting to current date.");
                     toDateParsed = DateTime.UtcNow; 
                 }
 
