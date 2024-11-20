@@ -15,6 +15,7 @@
     "function-subnets"      : "subnet-016f9dea13d298c7b,subnet-0e8fd91761ccd4222",
     "function-security-groups" : "sg-0a1a56b17a4692431,sg-0cf64ee12a4fd593b",
     "tracing-mode"             : "PassThrough",
-    "environment-variables"    : "",
-    "image-tag"                : ""
+    "environment-variables"    : "\"ASPNETCORE_ENVIRONMENT\"=\"Development\";\"DbOffice\"=\"db_office\";\"Version\"=\"AWSCURRENT\";\"GetTransactionSnapshot\"=\"usp_get_transaction\";\"RdsSecretName\"=\"rds-db-credentials\";\"Region\"=\"us-east-1\"",
+    "image-tag"                : "",
+    "function-description"     : ""
 }

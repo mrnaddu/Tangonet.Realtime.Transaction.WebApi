@@ -1,3 +1,4 @@
+using Tangonet.Realtime.Transaction.WebApi.Helpers;
 using Tangonet.Realtime.Transaction.WebApi.Interfaces;
 using Tangonet.Realtime.Transaction.WebApi.Services;
 
@@ -10,9 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
+builder.Services.AddAutoMapper(typeof(Program));
 
 // Dependency Injection
 builder.Services.AddScoped<ITransactionAppService, TransactionAppService>();
+builder.Services.AddScoped<ConnectionHelper>();
 
 var app = builder.Build();
 

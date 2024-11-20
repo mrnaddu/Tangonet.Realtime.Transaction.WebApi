@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tangonet.Realtime.Transaction.WebApi.Entities;
+namespace Tangonet.Realtime.Transaction.WebApi.Dtos;
 
 #nullable enable
-public class Transaction
+public class TransactionDto
 {
-    public class Request
+    public class RequestDto
     {
+        [Required]
         public required string FromDate { get; set; }
         public string? ToDate { get; set; }
         public string? TransactionId { get; set; }
@@ -15,13 +17,13 @@ public class Transaction
         public string? TerminalId { get; set; }
     }
 
-    public class Response
+    public class ResponseDto
     {
-        public List<TransactionDetail> Transactions { get; set; } = [];
+        public List<TransactionDetailDto> Transactions { get; set; } = [];
         public int RemainingTransactions { get; set; }
     }
 
-    public class TransactionDetail
+    public class TransactionDetailDto
     {
         [Column("transaction_id")]
         public string? TransactionId { get; set; }
