@@ -6,17 +6,6 @@ namespace Tangonet.Realtime.Transaction.WebApi.Dtos;
 #nullable enable
 public class TransactionDto
 {
-    public class RequestDto
-    {
-        [Required]
-        public required string FromDate { get; set; }
-        public string? ToDate { get; set; }
-        public string? TransactionId { get; set; }
-        public string? MaxCount { get; set; }
-        public string? TransactionState { get; set; }
-        public string? TerminalId { get; set; }
-    }
-
     public class ResponseDto
     {
         public List<TransactionDetailDto> Transactions { get; set; } = [];
