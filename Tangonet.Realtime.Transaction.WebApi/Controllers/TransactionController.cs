@@ -9,7 +9,7 @@ using Tangonet.Realtime.Transaction.WebApi.Models;
 namespace Tangonet.Realtime.Transaction.WebApi.Controllers;
 
 [Authorize]
-[Route("/api/tangonet-real-time/")]
+[Route("/api/v1/")]
 [ApiController]
 public class TransactionController(
     ITransactionAppService transactionAppService,
