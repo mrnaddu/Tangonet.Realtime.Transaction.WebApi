@@ -34,42 +34,42 @@ public class TransactionController(
 
             if (!ValidationHelper.IsDateFormat(fromDate))
             {
-                validationErrors.Add($"Invalid request from date format. Please use yyyy-MM-dd format. {fromDate}");
+                validationErrors.Add($"Invalid request FromDate. Please use yyyy-MM-dd format. {fromDate}");
             }
 
             if (!string.IsNullOrWhiteSpace(toDate) && !ValidationHelper.IsDateFormat(toDate))
             {
-                validationErrors.Add($"Invalid request to date format. Please use yyyy-MM-dd format. {toDate}");
+                validationErrors.Add($"Invalid request ToDate. Please use yyyy-MM-dd format. {toDate}");
             }
 
             if (!string.IsNullOrWhiteSpace(maxCount) && !ValidationHelper.IsNumberFormat(maxCount))
             {
-                validationErrors.Add($"Invalid request max count. Please use integer format. {maxCount}");
+                validationErrors.Add($"Invalid request MaxCount. Please use integer format. {maxCount}");
             }
 
             if (!string.IsNullOrWhiteSpace(pageNumber) && !ValidationHelper.IsNumberFormat(pageNumber))
             {
-                validationErrors.Add($"Invalid request page number. Please use integer format. {pageNumber}");
+                validationErrors.Add($"Invalid request PageNumber. Please use integer format. {pageNumber}");
             }
 
             if (!string.IsNullOrWhiteSpace(pageSize) && !ValidationHelper.IsNumberFormat(pageSize))
             {
-                validationErrors.Add($"Invalid request page size. Please use integer format. {pageSize}");
+                validationErrors.Add($"Invalid request PageSize. Please use integer format. {pageSize}");
             }
 
             if (!string.IsNullOrWhiteSpace(transactionState) && !ValidationHelper.IsTransactionState(transactionState))
             {
-                validationErrors.Add($"Invalid request transaction state. Please use one of the following values: C, Y, P. {transactionState}");
+                validationErrors.Add($"Invalid request TransactionState. Please use one of the following values: C, Y, P. {transactionState}");
             }
 
             if (!string.IsNullOrWhiteSpace(terminalId) && !ValidationHelper.IsAlphaNumericFormat(terminalId))
             {
-                validationErrors.Add($"Invalid request terminal id. Please use alphanumeric format. {terminalId}");
+                validationErrors.Add($"Invalid request TerminalId. Please use alphanumeric format. {terminalId}");
             }
 
             if (!string.IsNullOrWhiteSpace(transactionId) && !ValidationHelper.IsGuidFormat(transactionId))
             {
-                validationErrors.Add($"Invalid request transaction id. Please use guid format. {transactionId}");
+                validationErrors.Add($"Invalid request TransactionId. Please use guid format. {transactionId}");
             }
 
             if (validationErrors.Count != 0)
