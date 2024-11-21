@@ -87,7 +87,8 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error processing GetTransactionAsync request");
+            _logger.LogError(
+                ex, "Error processing GetTransactionAsync request");
             throw;
         }
     }
