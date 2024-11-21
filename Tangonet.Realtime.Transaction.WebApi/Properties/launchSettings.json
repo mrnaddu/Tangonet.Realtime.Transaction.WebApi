@@ -16,7 +16,8 @@
       "applicationUrl": "http://localhost:5147",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ApiKey": "DtmK3eERuQ8mbRI8y3Ie8BDHwNEFwIX7mwrvkMVi"
+        "ApiKey": "DtmK3eERuQ8mbRI8y3Ie8BDHwNEFwIX7mwrvkMVi",
+        "PartnerId": "Raasoft2024"
       }
     },
     "Mock Lambda Test Tool": {

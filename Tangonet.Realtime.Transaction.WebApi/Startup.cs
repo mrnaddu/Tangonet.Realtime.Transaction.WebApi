@@ -2,6 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Tangonet.Realtime.Transaction.WebApi.Authentication;
 using Tangonet.Realtime.Transaction.WebApi.Interfaces;
+using Tangonet.Realtime.Transaction.WebApi.Middleware;
 using Tangonet.Realtime.Transaction.WebApi.Services;
 
 namespace Tangonet.Realtime.Transaction.WebApi;
@@ -13,6 +14,12 @@ public class Startup
         services.AddAuthentication("ApiKey")
             .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>("ApiKey", null);
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("ApiKeyPolicy", policy =>
+                policy.RequireAuthenticatedUser());
+        });
+
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo
@@ -21,12 +28,21 @@ public class Startup
                 Version = "v1",
                 Description = "API for managing real-time "
             });
-            const string securityDefinition = "ApiKey";
-            c.AddSecurityDefinition(securityDefinition, new OpenApiSecurityScheme
+
+            c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
             {
                 In = ParameterLocation.Header,
                 Name = "x-api-key",
-                Type = SecuritySchemeType.ApiKey
+                Type = SecuritySchemeType.ApiKey,
+                Description = "API Key needed to access the endpoints."
+            });
+
+            c.AddSecurityDefinition("PartnerId", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Name = "x-partner-id",
+                Type = SecuritySchemeType.ApiKey,
+                Description = "Partner ID needed to access the endpoints."
             });
 
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -37,17 +53,28 @@ public class Startup
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = securityDefinition
+                        Id = "ApiKey"
                     }
                 },
-                new List<string>()
+                Array.Empty<string>()
+            },
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "PartnerId"
+                    }
+                },
+                Array.Empty<string>()
             }
         });
         });
 
         services.AddControllers();
 
-        // Aws Configuration
+        // AWS Configuration
         services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
 
         // Dependency Injection
@@ -62,6 +89,8 @@ public class Startup
         }
 
         app.UseRouting();
+
+        app.UseMiddleware<CustomUnauthorizedResponseMiddleware>();
 
         app.UseAuthentication(); 
 

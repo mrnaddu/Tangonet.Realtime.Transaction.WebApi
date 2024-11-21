@@ -23,10 +23,11 @@ public class TransactionController(
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TransactionDto.ResponseDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
     public IActionResult GetAsync(
-    [Required] string fromDate, string toDate, string transactionId, string pageNumber , string pageSize, string maxCount, string transactionState, string terminalId)
+        [Required] string fromDate, string toDate, string transactionId, string pageNumber , string pageSize, string maxCount, string transactionState, string terminalId)
     {
         string traceId = HttpContext.TraceIdentifier;
-        _logger.LogInformation("Request processed. TraceId: {traceId}", traceId);
+        _logger.LogInformation(
+            "Request processed. TraceId: {traceId}", traceId);
 
         try
         {
