@@ -9,17 +9,16 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
     private readonly ILogger<TransactionAppService> _logger = logger;
 
     public TransactionDto.ResponseDto GetTransactionAsync(
-        string fromDate, string toDate, string transactionId, string maxCount, string transactionState, string terminalId)
+        string fromDate,string toDate,string transactionId,string pageNumber,string pageSize,string maxCount,string transactionState,string terminalId)
     {
-        _logger.LogInformation("Received GetTransactionAsync request");
+        _logger.LogInformation(
+            "Received GetTransactionAsync request");
 
         try
         {
-            var sampleResponse = SampleData.GetSampleResponse(
-                fromDate, toDate);
-
+            var sampleResponse = SampleData.GetSampleResponse(fromDate, toDate);
             var transactions = sampleResponse.Transactions;
-             
+
             var filteredTransactions = transactions.AsQueryable();
 
             if (!string.IsNullOrEmpty(transactionId))
@@ -39,11 +38,11 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
             if (DateTime.TryParse(fromDate, out var fromDateParsed))
             {
-                DateTime toDateParsed = DateTime.UtcNow; 
+                DateTime toDateParsed = DateTime.UtcNow;
 
                 if (!string.IsNullOrEmpty(toDate) && !DateTime.TryParse(toDate, out toDateParsed))
                 {
-                    toDateParsed = DateTime.UtcNow; 
+                    toDateParsed = DateTime.UtcNow;
                 }
 
                 filteredTransactions = filteredTransactions.Where(t =>
@@ -51,15 +50,32 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
                     DateTime.Parse(t.TransactionDttm) <= toDateParsed);
             }
 
-            int maxTransactions = 50; 
+            int maxTransactions = 50;
             if (int.TryParse(maxCount, out var maxCountParsed))
             {
                 maxTransactions = Math.Min(maxCountParsed, maxTransactions);
             }
 
-            var resultTransactions = filteredTransactions.Take(maxTransactions).ToList();
+            int page = 1; 
+            if (int.TryParse(pageNumber, out var pageNumberParsed))
+            {
+                page = Math.Max(pageNumberParsed, 1); 
+            }
 
-            var remainingTransactions = Math.Max(0, transactions.Count - resultTransactions.Count);
+            int size = 10; 
+            if (int.TryParse(pageSize, out var pageSizeParsed))
+            {
+                size = Math.Max(pageSizeParsed, 1); 
+            }
+
+            int skipCount = (page - 1) * size;
+
+            var resultTransactions = filteredTransactions
+                .Skip(skipCount)
+                .Take(size)
+                .ToList();
+
+            var remainingTransactions = Math.Max(0, filteredTransactions.Count() - resultTransactions.Count);
 
             var responseDto = new TransactionDto.ResponseDto
             {

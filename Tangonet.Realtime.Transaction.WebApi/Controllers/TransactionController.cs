@@ -23,7 +23,7 @@ public class TransactionController(
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TransactionDto.ResponseDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
     public IActionResult GetAsync(
-    [Required] string fromDate, string toDate, string transactionId, string maxCount, string transactionState, string terminalId)
+    [Required] string fromDate, string toDate, string transactionId, string pageNumber , string pageSize, string maxCount, string transactionState, string terminalId)
     {
         string traceId = HttpContext.TraceIdentifier;
         _logger.LogInformation("Request processed. TraceId: {traceId}", traceId);
@@ -47,6 +47,16 @@ public class TransactionController(
                 validationErrors.Add($"Invalid request max count. Please use integer format. {maxCount}");
             }
 
+            if (!string.IsNullOrWhiteSpace(pageNumber) && !ValidationHelper.IsNumberFormat(pageNumber))
+            {
+                validationErrors.Add($"Invalid request page number. Please use integer format. {pageNumber}");
+            }
+
+            if (!string.IsNullOrWhiteSpace(pageSize) && !ValidationHelper.IsNumberFormat(pageSize))
+            {
+                validationErrors.Add($"Invalid request page size. Please use integer format. {pageSize}");
+            }
+
             if (!string.IsNullOrWhiteSpace(transactionState) && !ValidationHelper.IsTransactionState(transactionState))
             {
                 validationErrors.Add($"Invalid request transaction state. Please use one of the following values: C, Y, P. {transactionState}");
@@ -68,7 +78,7 @@ public class TransactionController(
             }
 
             var response = _transactionAppService.GetTransactionAsync(
-                fromDate, toDate, transactionId, maxCount, transactionState, terminalId);
+                fromDate, toDate, transactionId,pageNumber,pageSize, maxCount, transactionState, terminalId);
 
             if (response == null || response.Transactions == null || response.Transactions.Count == 0)
             {
