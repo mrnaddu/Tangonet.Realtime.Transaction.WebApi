@@ -24,7 +24,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
             if (!string.IsNullOrEmpty(transactionId))
             {
-                filteredTransactions = filteredTransactions.Where(t => t.TransactionId.Equals(transactionId, StringComparison.OrdinalIgnoreCase));
+                filteredTransactions = filteredTransactions.Where(t => t.TransactionUid.Equals(transactionId, StringComparison.OrdinalIgnoreCase));
             }
 
             if (!string.IsNullOrEmpty(transactionState))

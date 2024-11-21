@@ -167,8 +167,9 @@ public class SampleData
 
                     transactions.Add(new TransactionDetailDto
                     {
-                        TransactionId = TransactionIds[random.Next(TransactionIds.Count)],
+                        TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
                         TransactionDttm = transactionDate.ToString("o"),
+                        TransactionCode = $"TRN{random.Next(100000, 999999)}",
                         TransactionAmount = transactionAmount,
                         TransactionFee = transactionFee,
                         TotalAmount = Math.Round(totalAmount, 2), 
@@ -178,7 +179,7 @@ public class SampleData
                         TerminalUid = TerminalIds[random.Next(TerminalIds.Count)],
                         PartnerName = $"Partner {random.Next(1, 6)}",
                         CustomerName = $"Customer {random.Next(1, 20)}",
-                        StatusUpdatedDttm = statusUpdatedDate.ToString("o") 
+                        UpdatedDttm = statusUpdatedDate.ToString("o") 
                     });
                 }
             }
@@ -197,7 +198,7 @@ public class SampleData
 
         if (!string.IsNullOrEmpty(transactionId))
         {
-            query = query.Where(t => t.TransactionId.Equals(transactionId, StringComparison.OrdinalIgnoreCase));
+            query = query.Where(t => t.TransactionUid.Equals(transactionId, StringComparison.OrdinalIgnoreCase));
         }
 
         if (!string.IsNullOrEmpty(transactionType))

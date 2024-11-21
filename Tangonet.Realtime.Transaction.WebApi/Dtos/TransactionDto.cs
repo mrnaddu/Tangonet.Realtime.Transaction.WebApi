@@ -25,8 +25,9 @@ public class TransactionDto
 
     public class TransactionDetailDto
     {
-        public string? TransactionId { get; set; }
+        public string? TransactionUid { get; set; }
         public string? TransactionDttm { get; set; }
+        public string? TransactionCode { get; set; }
         public decimal TransactionAmount { get; set; }
         public decimal TransactionFee { get; set; }
         public decimal TotalAmount { get; set; }
@@ -36,6 +37,6 @@ public class TransactionDto
         public string? TerminalUid { get; set; }
         public string? PartnerName { get; set; }
         public string? CustomerName { get; set; }
-        public string? StatusUpdatedDttm { get; set; }
+        public string? UpdatedDttm { get; set; }
     }
 }
