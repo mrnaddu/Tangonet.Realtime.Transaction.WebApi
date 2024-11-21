@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.OpenApi.Models;
 using Tangonet.Realtime.Transaction.WebApi.Authentication;
+using Tangonet.Realtime.Transaction.WebApi.Helpers;
 using Tangonet.Realtime.Transaction.WebApi.Interfaces;
 using Tangonet.Realtime.Transaction.WebApi.Middleware;
 using Tangonet.Realtime.Transaction.WebApi.Services;

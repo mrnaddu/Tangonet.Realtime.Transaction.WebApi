@@ -22,6 +22,7 @@ public class TransactionController(
     [HttpGet("transaction")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TransactionDto.ResponseDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
     public IActionResult GetAsync(
         [Required] string fromDate, string toDate, string transactionId, string pageNumber , string pageSize, string maxCount, string transactionState, string terminalId)
     {
