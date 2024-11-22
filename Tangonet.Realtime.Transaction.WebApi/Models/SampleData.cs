@@ -148,47 +148,50 @@ public class SampleData
         var transactions = new List<TransactionDetailDto>();
         var random = new Random();
 
+        var billerNames = new List<string> { "Electric Company", "Water Works", "Internet Provider", "Gas Company", "Telecom Services" };
+
         DateTime parsedFromDate = DateTime.Parse(fromDate);
         DateTime parsedToDate = string.IsNullOrWhiteSpace(toDate) ? DateTime.UtcNow : DateTime.Parse(toDate);
 
         for (int i = 0; i < 250; i++)
         {
-            var transactionDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400)); // Add random seconds in a day
+            var transactionDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
 
-            var statusUpdatedDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400)); // Add random seconds in a day
+            var statusUpdatedDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
 
-            if (transactionDate >= parsedFromDate && transactionDate <= parsedToDate)
+            if (transactionDate >= parsedFromDate && transactionDate <= parsedToDate &&
+                statusUpdatedDate >= parsedFromDate && statusUpdatedDate <= parsedToDate)
             {
-                if (statusUpdatedDate >= parsedFromDate && statusUpdatedDate <= parsedToDate)
-                {
-                    decimal transactionAmount = Math.Round(random.NextDecimal(1, 1000), 2);
-                    decimal transactionFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
-                    decimal totalAmount = transactionAmount + transactionFee; 
+                decimal transactionAmount = Math.Round(random.NextDecimal(1, 1000), 2);
+                decimal transactionFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
 
-                    transactions.Add(new TransactionDetailDto
-                    {
-                        TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
-                        TransactionDttm = transactionDate.ToString("o"),
-                        TransactionCode = $"TRN{random.Next(100000, 999999)}",
-                        TransactionAmount = transactionAmount,
-                        TransactionFee = transactionFee,
-                        TotalAmount = Math.Round(totalAmount, 2), 
-                        TransactionType = random.Next(0, 2) == 0 ? "S" : "B",
-                        TransactionCurrency = random.Next(0, 2) == 0 ? "USD" : "EUR",
-                        TransactionState = GetRandomTransactionState(),
-                        TerminalUid = TerminalIds[random.Next(TerminalIds.Count)],
-                        PartnerName = $"Partner {random.Next(1, 6)}",
-                        CustomerName = $"Customer {random.Next(1, 20)}",
-                        UpdatedDttm = statusUpdatedDate.ToString("o") 
-                    });
-                }
+                string transactionType = GetRandomTransactionType();
+
+                string discretionaryData = transactionType == "BPY"
+                    ? billerNames[random.Next(billerNames.Count)]
+                    : string.Empty;
+
+                transactions.Add(new TransactionDetailDto
+                {
+                    TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
+                    TransactionDttm = transactionDate.ToString("o"),
+                    TransactionId = $"TRN{random.Next(100000, 999999)}",
+                    TransactionAmount = transactionAmount,
+                    TransactionFee = transactionFee,
+                    TransactionCurrency = GetRandomTransactionCurreny(),
+                    TransactionType = transactionType, 
+                    TransactionStatus = GetRandomTransactionStatus(),
+                    Terminald = TerminalIds[random.Next(TerminalIds.Count)],
+                    CustomerName = $"Customer {random.Next(1, 20)}",
+                    DiscretionaryData = discretionaryData
+                });
             }
         }
 
         return new ResponseDto
         {
             Transactions = transactions,
-            RemainingTransactions = Math.Max(0, 100 - transactions.Count)
+            TotalTransactions = transactions.Count
         };
     }
 
@@ -208,19 +211,30 @@ public class SampleData
 
         if (!string.IsNullOrEmpty(terminalUid))
         {
-            query = query.Where(t => t.TerminalUid.Equals(terminalUid, StringComparison.OrdinalIgnoreCase));
+            query = query.Where(t => t.Terminald.Equals(terminalUid, StringComparison.OrdinalIgnoreCase));
         }
 
         return [.. query];
     }
 
-    private static string GetRandomTransactionState()
+    private static string GetRandomTransactionStatus()
     {
-        string[] states = { "Y", "P", "C" };
+        string[] states = { "X", "V", "C" };
+        return states[_random.Next(states.Length)];
+    }
+
+    private static string GetRandomTransactionType()
+    {
+        string[] states = { "BPY", "RSND", "TKTP" };
+        return states[_random.Next(states.Length)];
+    }
+
+    private static string GetRandomTransactionCurreny()
+    {
+        string[] states = { "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "NZD", "SEK" };
         return states[_random.Next(states.Length)];
     }
 }
-
 
 public static class RandomExtensions
 {
