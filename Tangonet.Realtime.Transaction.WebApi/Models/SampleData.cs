@@ -143,12 +143,11 @@ public class SampleData
 
     private static readonly List<TransactionDetailDto> _transactions = [];
 
-    public static ResponseDto GetSampleResponse(string fromDate, string toDate = null)
+    public static ResponseDto GetSampleResponse(
+        string fromDate, string toDate = null)
     {
         var transactions = new List<TransactionDetailDto>();
         var random = new Random();
-
-        var billerNames = new List<string> { "Electric Company", "Water Works", "Internet Provider", "Gas Company", "Telecom Services" };
 
         DateTime parsedFromDate = DateTime.Parse(fromDate);
         DateTime parsedToDate = string.IsNullOrWhiteSpace(toDate) ? DateTime.UtcNow : DateTime.Parse(toDate);
@@ -164,12 +163,42 @@ public class SampleData
             {
                 decimal transactionAmount = Math.Round(random.NextDecimal(1, 1000), 2);
                 decimal transactionFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
-
                 string transactionType = GetRandomTransactionType();
 
-                string discretionaryData = transactionType == "BPY"
-                    ? billerNames[random.Next(billerNames.Count)]
-                    : string.Empty;
+                var discretionaryData = new DiscretionaryDataDto();
+
+                if (transactionType == "BPY")
+                {
+                    discretionaryData.BillPay =
+                [
+                    new() 
+                    {
+                        BillerName = GenerateBillerName(random)
+                    }
+                ];
+                }
+
+                if (transactionType == "RSND")
+                {
+                    discretionaryData.RemittanceSend =
+                [
+                    new()
+                    {
+                        ReceiverName = GenerateReciverName(random)
+                    }
+                ];
+                }
+
+                if (transactionType == "TKTP")
+                {
+                    discretionaryData.PlayTicket =
+                [
+                    new()
+                    {
+                        TicketId = GenerateTicketId(random)
+                    }
+                ];
+                }
 
                 transactions.Add(new TransactionDetailDto
                 {
@@ -195,7 +224,25 @@ public class SampleData
         };
     }
 
-    public static List<TransactionDetailDto> SearchTransactions(string transactionId = null, string transactionType = null, string terminalUid = null)
+    private static string GenerateTicketId(Random random)
+    {
+        int numericPart = random.Next(100000, 999999);
+        return $"CYYDDD{numericPart:D6}"; 
+    }
+
+    private static string GenerateReciverName(Random random)
+    {
+        int numericPart = random.Next(1,99);
+        return $"User {numericPart}";
+    }
+    private static string GenerateBillerName(Random random)
+    {
+        int numericPart = random.Next(1, 99);
+        return $"Biller {numericPart}";
+    }
+
+    public static List<TransactionDetailDto> SearchTransactions(
+        string transactionId = null, string transactionType = null, string terminalUid = null)
     {
         var query = _transactions.AsQueryable();
 

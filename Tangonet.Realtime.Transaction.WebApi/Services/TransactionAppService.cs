@@ -100,7 +100,8 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
         try
         {
-            var sampleResponse = SampleData.GetSampleResponse(fromDate, toDate);
+            var sampleResponse = SampleData.GetSampleResponse(
+                fromDate, toDate);
             var transactions = sampleResponse.Transactions;
             var totalTransactions = sampleResponse.TotalTransactions;
 
