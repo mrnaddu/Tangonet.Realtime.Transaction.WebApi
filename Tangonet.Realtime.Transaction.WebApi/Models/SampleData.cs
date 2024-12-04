@@ -143,21 +143,21 @@ public class SampleData
 
     private static readonly List<TransactionDetailDto> _transactions = [];
 
-    public static ResponseDto GetSampleResponse(string fromDate, string toDate = null)
+    public static ResponseDto GetSampleResponse(string fromDateTime, string toDateTime = null)
     {
         var transactions = new List<TransactionDetailDto>();
         var random = new Random();
 
-        DateTime parsedFromDate = DateTime.Parse(fromDate);
-        DateTime parsedToDate = string.IsNullOrWhiteSpace(toDate) ? DateTime.UtcNow : DateTime.Parse(toDate);
+        DateTime parsedFromDateTime = DateTime.Parse(fromDateTime);
+        DateTime parsedToDateTime = string.IsNullOrWhiteSpace(toDateTime) ? DateTime.UtcNow : DateTime.Parse(toDateTime);
 
         for (int i = 0; i < 250; i++)
         {
             var transactionDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
             var statusUpdatedDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
 
-            if (transactionDate >= parsedFromDate && transactionDate <= parsedToDate &&
-                statusUpdatedDate >= parsedFromDate && statusUpdatedDate <= parsedToDate)
+            if (transactionDate >= parsedFromDateTime && transactionDate <= parsedToDateTime &&
+                statusUpdatedDate >= parsedFromDateTime && statusUpdatedDate <= parsedToDateTime)
             {
                 decimal transactionAmount = Math.Round(random.NextDecimal(1, 1000), 2);
                 decimal transactionFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
@@ -243,7 +243,7 @@ public class SampleData
                 transactions.Add(new TransactionDetailDto
                 {
                     TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
-                    TransactionDttm = transactionDate.ToString("o"),
+                    TransactionDttm = transactionDate.ToString("yyyy-MM-ddTHH:mm:ssZ"),
                     TransactionId = $"TRN{random.Next(100000, 999999)}",
                     Amount = transactionAmount,
                     Fee = transactionFee,
