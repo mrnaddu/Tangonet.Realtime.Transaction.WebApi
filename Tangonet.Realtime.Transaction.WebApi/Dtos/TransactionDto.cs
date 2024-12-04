@@ -5,7 +5,7 @@ public class TransactionDto
 {
     public class ResponseDto
     {
-        public int TotalRecordFound { get; set; }
+        public int TotalRecordsFound { get; set; }
         public List<TransactionDetailDto> Transactions { get; set; } = [];
     }
 
@@ -33,14 +33,37 @@ public class TransactionDto
 
     public class BillPayDto
     {
-        public string? BillerName { get; set; }
+        public string? Biller { get; set; }
+        public string? ReferenceNumber { get; set; }
+        public string? BillAccountNumber { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Fee { get; set; }
     }
     public class RemittanceSendDto
     {
-        public string? ReceiverName { get; set; }
+        public string? Receiver { get; set; }
+        public string? ReceiveMethod { get; set; }
+        public string? ReferenceNumber { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Fee { get; set; }
     }
     public class PlayTicketDto
     {
+        public int? TicketCount { get; set; }
+        public List<TicketDto>? Tickets { get; set; } = [];
+    }
+
+    public class TicketDto
+    {
+        public bool TicketAllocated { get; set; }
+        public string? TicketUid { get; set; }
         public string? TicketId { get; set; }
+        public bool TicketRedeemedSuccessfully { get; set; }
+        public DateTime? TicketCreatedDateTime { get; set; }
+        public DateTime? TicketCompletedDateTime { get; set; }
+        public char? TicketStatus { get; set; }
+        public int? FaceValue { get; set; }
+        public string? Notes { get; set; }
+
     }
 }

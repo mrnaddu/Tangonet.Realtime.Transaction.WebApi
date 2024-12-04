@@ -143,8 +143,7 @@ public class SampleData
 
     private static readonly List<TransactionDetailDto> _transactions = [];
 
-    public static ResponseDto GetSampleResponse(
-        string fromDate, string toDate = null)
+    public static ResponseDto GetSampleResponse(string fromDate, string toDate = null)
     {
         var transactions = new List<TransactionDetailDto>();
         var random = new Random();
@@ -155,7 +154,6 @@ public class SampleData
         for (int i = 0; i < 250; i++)
         {
             var transactionDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
-
             var statusUpdatedDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
 
             if (transactionDate >= parsedFromDate && transactionDate <= parsedToDate &&
@@ -169,13 +167,31 @@ public class SampleData
 
                 if (transactionType == "BPY")
                 {
-                    discretionaryData.BillPay =
-                [
-                    new() 
+                    int billCount = random.Next(1, 5); 
+                    discretionaryData.BillPay = [];
+
+                    decimal totalBillAmount = 0;
+                    decimal totalBillFee = 0;
+
+                    for (int j = 0; j < billCount; j++)
                     {
-                        BillerName = GenerateBillerName(random)
+                        decimal billAmount = Math.Round(random.NextDecimal(1, 1000), 2);
+                        decimal billFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
+
+                        discretionaryData.BillPay.Add(new BillPayDto
+                        {
+                            Biller = GenerateBillerName(),
+                            ReferenceNumber = GenerateReferenceNumber(),
+                            BillAccountNumber = GenerateBillAccountNumber(),
+                            Amount = billAmount,
+                            Fee = billFee
+                        });
+
+                        totalBillAmount += billAmount;
+                        totalBillFee += billFee;
                     }
-                ];
+                    transactionAmount = totalBillAmount;
+                    transactionFee = totalBillFee;
                 }
 
                 if (transactionType == "RSND")
@@ -184,18 +200,42 @@ public class SampleData
                 [
                     new()
                     {
-                        ReceiverName = GenerateReciverName(random)
+                        Receiver = GenerateReciverName(),
+                        ReceiveMethod = GetRandomReceiveMethod(),
+                        ReferenceNumber = GenerateReferenceNumber(),
+                        Amount = transactionAmount,
+                        Fee = transactionFee
                     }
                 ];
                 }
 
                 if (transactionType == "TKTP")
                 {
+                    int ticketCount = random.Next(1, 10);
+                    var tickets = new List<TicketDto>();
+
+                    for (int j = 0; j < ticketCount; j++)
+                    {
+                        tickets.Add(new TicketDto
+                        {
+                            TicketUid = Guid.NewGuid().ToString(),
+                            TicketId = GenerateTicketId(),
+                            TicketAllocated = true,
+                            TicketRedeemedSuccessfully = random.Next(0, 2) == 1,
+                            TicketCreatedDateTime = DateTime.UtcNow,
+                            TicketCompletedDateTime = DateTime.UtcNow.AddDays(-random.Next(1, 30)),
+                            TicketStatus = GetRandomTicketStatus(),
+                            FaceValue = random.Next(1, 100),
+                            Notes = GetRandomTicketNote()
+                        });
+                    }
+
                     discretionaryData.PlayTicket =
                 [
                     new()
                     {
-                        TicketId = GenerateTicketId(random)
+                        TicketCount = ticketCount,
+                        Tickets = tickets
                     }
                 ];
                 }
@@ -208,7 +248,7 @@ public class SampleData
                     Amount = transactionAmount,
                     Fee = transactionFee,
                     Currency = GetRandomTransactionCurreny(),
-                    TransactionType = transactionType, 
+                    TransactionType = transactionType,
                     Status = GetRandomTransactionStatus(),
                     Terminald = TerminalIds[random.Next(TerminalIds.Count)],
                     CustomerName = $"Customer {random.Next(1, 20)}",
@@ -220,24 +260,24 @@ public class SampleData
         return new ResponseDto
         {
             Transactions = transactions,
-            TotalRecordFound = transactions.Count
+            TotalRecordsFound = transactions.Count
         };
     }
 
-    private static string GenerateTicketId(Random random)
+    private static string GenerateTicketId()
     {
-        int numericPart = random.Next(100000, 999999);
+        int numericPart = _random.Next(100000, 999999);
         return $"CYYDDD{numericPart:D6}"; 
     }
 
-    private static string GenerateReciverName(Random random)
+    private static string GenerateReciverName()
     {
-        int numericPart = random.Next(1,99);
+        int numericPart = _random.Next(1,99);
         return $"User {numericPart}";
     }
-    private static string GenerateBillerName(Random random)
+    private static string GenerateBillerName()
     {
-        int numericPart = random.Next(1, 99);
+        int numericPart = _random.Next(1, 99);
         return $"Biller {numericPart}";
     }
 
@@ -264,22 +304,69 @@ public class SampleData
         return [.. query];
     }
 
+    private static char GetRandomTicketStatus()
+    {
+        char[] states = ['R', 'V', 'E']; 
+        return states[_random.Next(states.Length)]; 
+    }
+
     private static string GetRandomTransactionStatus()
     {
-        string[] states = { "X", "V", "C" };
+        string[] states = ["X", "V", "C"];
         return states[_random.Next(states.Length)];
     }
 
     private static string GetRandomTransactionType()
     {
-        string[] states = { "BPY", "RSND", "TKTP" };
+        string[] states = ["BPY", "RSND", "TKTP"];
         return states[_random.Next(states.Length)];
     }
 
     private static string GetRandomTransactionCurreny()
     {
-        string[] states = { "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "NZD", "SEK" };
+        string[] states = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "NZD", "SEK"];
         return states[_random.Next(states.Length)];
+    }
+
+    private static string GenerateBillAccountNumber()
+    {
+        int lastFourDigits = _random.Next(1000, 10000); 
+                                                        
+        string maskedPart = new('*', 12); 
+                                                 
+        return $"{maskedPart}{lastFourDigits:D4}"; 
+    }
+
+    private static string GenerateReferenceNumber()
+    {
+        int firstPart = _random.Next(0, 10); 
+        int secondPart = _random.Next(0, 10); 
+        return $"FLTP1:{firstPart}:{secondPart}";
+    }
+
+    private static string GetRandomReceiveMethod()
+    {
+        string[] receiveMethods = ["10 Min Service", "1 Day Service", "2 Day Service", "3 Day Service"];
+        return receiveMethods[_random.Next(receiveMethods.Length)];
+    }
+
+    private static string GetRandomTicketNote()
+    {
+        string[] notes =
+        {
+            "Ticket purchased successfully.",
+            "Please keep this ticket safe.",
+            "This ticket is valid for one entry.",
+            "Check the date and time of your event.",
+            "No refunds or exchanges.",
+            "Enjoy your event!",
+            "This ticket is non-transferable.",
+            "Lost tickets cannot be replaced.",
+            "Present this ticket at the entrance.",
+            "Thank you for your purchase!"
+        };
+
+        return notes[_random.Next(notes.Length)]; 
     }
 }
 
