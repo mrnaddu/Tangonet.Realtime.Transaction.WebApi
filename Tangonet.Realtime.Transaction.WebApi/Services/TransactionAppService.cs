@@ -8,7 +8,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 {
     private readonly ILogger<TransactionAppService> _logger = logger;
     public TransactionDto.ResponseDto GetTransactionAsync(
-        string fromDate, string toDate, string transactionId, string lastTransactionIdPassed, string batchSize)
+        string fromDate, string toDate, string transactionId, string lastTransactionIdPassed, int batchSize)
     {
         _logger.LogInformation("Received GetTransactionAsync request");
 
@@ -46,10 +46,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
             }
 
             int maxTransactions = 50;
-            if (int.TryParse(batchSize, out var batchSizeParsed))
-            {
-                maxTransactions = Math.Min(batchSizeParsed, 500); 
-            }
+            maxTransactions = Math.Min(batchSize, 500);
 
             var resultTransactions = filteredTransactions
                 .Take(maxTransactions)

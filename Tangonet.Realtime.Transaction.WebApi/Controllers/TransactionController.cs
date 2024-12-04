@@ -24,7 +24,7 @@ public class TransactionController(
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
     public IActionResult GetAsync(
-        [Required] string fromDate, string toDate, string transactionId, string lastTransactionIdPassed, string batchSize)
+        [Required] string fromDate, string toDate, string transactionId, string lastTransactionIdPassed, int batchSize)
     {
         string traceId = HttpContext.TraceIdentifier;
         _logger.LogInformation(
