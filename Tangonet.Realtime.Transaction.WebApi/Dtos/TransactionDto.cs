@@ -20,7 +20,6 @@ public class TransactionDto
         public string? Currency { get; set; }
         public string? TransactionType { get; set; }
         public string? Status { get; set; }
-        public string? CustomerName { get; set; }
         public DiscretionaryDataDto? DiscretionaryData { get; set; } = new DiscretionaryDataDto();
     }
 

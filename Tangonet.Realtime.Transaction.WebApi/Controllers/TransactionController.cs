@@ -24,7 +24,7 @@ public class TransactionController(
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
     public IActionResult GetAsync(
-        [Required] string fromDateTime, string toDateTime, string transactionId, string lastTransactionIdPassed, string batchSize)
+        [Required] string fromDate, string toDate, string transactionId, string lastTransactionIdPassed, string batchSize)
     {
         string traceId = HttpContext.TraceIdentifier;
         _logger.LogInformation(
@@ -34,14 +34,14 @@ public class TransactionController(
         {
             var validationErrors = new List<string>();
 
-            if (!ValidationHelper.IsDateFormat(fromDateTime))
+            if (!ValidationHelper.IsDateFormat(fromDate))
             {
-                validationErrors.Add($"Invalid request FromDateTime. Please use yyyy-MM-dd format. {fromDateTime}");
+                validationErrors.Add($"Invalid request FromDateTime. Please use yyyy-MM-dd format. {fromDate}");
             }
 
-            if (!string.IsNullOrWhiteSpace(toDateTime) && !ValidationHelper.IsDateFormat(toDateTime))
+            if (!string.IsNullOrWhiteSpace(toDate) && !ValidationHelper.IsDateFormat(toDate))
             {
-                validationErrors.Add($"Invalid request ToDateTime. Please use yyyy-MM-dd format. {toDateTime}");
+                validationErrors.Add($"Invalid request ToDateTime. Please use yyyy-MM-dd format. {toDate}");
             }
 
             if (!string.IsNullOrWhiteSpace(transactionId) && !ValidationHelper.IsGuidFormat(transactionId))
@@ -60,20 +60,20 @@ public class TransactionController(
             }
 
             var response = _transactionAppService.GetTransactionAsync(
-                fromDateTime, toDateTime, transactionId,lastTransactionIdPassed,batchSize);
+                fromDate, toDate, transactionId,lastTransactionIdPassed,batchSize);
 
             if (response == null || response.Transactions == null || response.Transactions.Count == 0)
             {
                 var noResultsMessage = "Transaction not found for the specified criteria. Check the following inputs: ";
 
-                if (!ValidationHelper.IsDateFormat(fromDateTime))
+                if (!ValidationHelper.IsDateFormat(fromDate))
                 {
-                    noResultsMessage += $"fromDateTime: {fromDateTime}; ";
+                    noResultsMessage += $"fromDate: {fromDate}; ";
                 }
 
-                if (!string.IsNullOrWhiteSpace(toDateTime) && !ValidationHelper.IsDateFormat(toDateTime))
+                if (!string.IsNullOrWhiteSpace(toDate) && !ValidationHelper.IsDateFormat(toDate))
                 {
-                    noResultsMessage += $"toDateTime: {toDateTime}; ";
+                    noResultsMessage += $"toDate: {toDate}; ";
                 }
 
                 if (!string.IsNullOrWhiteSpace(transactionId))
