@@ -55,10 +55,12 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
                 .Take(maxTransactions)
                 .ToList();
 
+            int remainingRecords = totalTransactions - resultTransactions.Count;
+
             var responseDto = new TransactionDto.ResponseDto
             {
                 Transactions = resultTransactions,
-                TotalRecordsFound = totalTransactions
+                TotalRecordsFound = remainingRecords
             };
 
             return responseDto;
