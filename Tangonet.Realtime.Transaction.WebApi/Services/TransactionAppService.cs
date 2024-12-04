@@ -46,7 +46,10 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
             }
 
             int maxTransactions = 50;
-            maxTransactions = Math.Min(batchSize, 500);
+            if (batchSize > 0)
+            {
+                maxTransactions = Math.Min(batchSize, 500);
+            }
 
             var resultTransactions = filteredTransactions
                 .Take(maxTransactions)
