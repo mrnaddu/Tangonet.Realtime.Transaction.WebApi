@@ -21,14 +21,14 @@ public class TransactionDto
         public string? TransactionType { get; set; }
         public string? Status { get; set; }
         public string? CustomerName { get; set; }
-        public DiscretionaryDataDto? DiscretionaryData { get; set; }
+        public DiscretionaryDataDto? DiscretionaryData { get; set; } = new DiscretionaryDataDto();
     }
 
     public class DiscretionaryDataDto
     {
-        public List<BillPayDto>? BillPay { get; set; }
-        public List<RemittanceSendDto>? RemittanceSend { get; set; }
-        public List<PlayTicketDto>? PlayTicket { get; set; }
+        public List<BillPayDto>? BillPay { get; set; } = [];
+        public List<RemittanceSendDto>? RemittanceSend { get; set; } = [];
+        public List<PlayTicketDto>? PlayTicket { get; set; } = [];
     }
 
     public class BillPayDto
