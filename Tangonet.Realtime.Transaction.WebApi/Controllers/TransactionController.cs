@@ -61,7 +61,7 @@ namespace Tangonet.Realtime.Transaction.WebApi.Controllers;
 
             if (!string.IsNullOrWhiteSpace(transactionState) && !ValidationHelper.IsTransactionState(transactionState))
             {
-                validationErrors.Add($"Invalid request TransactionStatus. Please use one of the following values: C, Y, P. {transactionState}");
+                validationErrors.Add($"Invalid request Status. Please use one of the following values: C, Y, P. {transactionState}");
             }
 
             if (!string.IsNullOrWhiteSpace(terminalId) && !ValidationHelper.IsAlphaNumericFormat(terminalId))

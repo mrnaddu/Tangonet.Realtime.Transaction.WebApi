@@ -28,7 +28,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
                 if (!string.IsNullOrEmpty(transactionState))
                 {
-                    filteredTransactions = filteredTransactions.Where(t => t.TransactionStatus.Equals(transactionState, StringComparison.OrdinalIgnoreCase));
+                    filteredTransactions = filteredTransactions.Where(t => t.Status.Equals(transactionState, StringComparison.OrdinalIgnoreCase));
                 }
 
                 if (!string.IsNullOrEmpty(terminalId))
@@ -80,7 +80,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
                 var responseDto = new TransactionDto.ResponseDto
                 {
                     Transactions = resultTransactions,
-                    TotalTransactions = remainingTransactions
+                    TotalRecordFound = remainingTransactions
                 };
 
                 return responseDto;
@@ -103,7 +103,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
             var sampleResponse = SampleData.GetSampleResponse(
                 fromDate, toDate);
             var transactions = sampleResponse.Transactions;
-            var totalTransactions = sampleResponse.TotalTransactions;
+            var totalTransactions = sampleResponse.TotalRecordFound;
 
             var filteredTransactions = transactions.AsQueryable();
 
@@ -144,7 +144,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
             var responseDto = new TransactionDto.ResponseDto
             {
                 Transactions = resultTransactions,
-                TotalTransactions = totalTransactions
+                TotalRecordFound = totalTransactions
             };
 
             return responseDto;

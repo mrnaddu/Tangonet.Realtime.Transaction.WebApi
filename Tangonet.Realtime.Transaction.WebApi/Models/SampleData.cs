@@ -205,11 +205,11 @@ public class SampleData
                     TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
                     TransactionDttm = transactionDate.ToString("o"),
                     TransactionId = $"TRN{random.Next(100000, 999999)}",
-                    TransactionAmount = transactionAmount,
-                    TransactionFee = transactionFee,
-                    TransactionCurrency = GetRandomTransactionCurreny(),
+                    Amount = transactionAmount,
+                    Fee = transactionFee,
+                    Currency = GetRandomTransactionCurreny(),
                     TransactionType = transactionType, 
-                    TransactionStatus = GetRandomTransactionStatus(),
+                    Status = GetRandomTransactionStatus(),
                     Terminald = TerminalIds[random.Next(TerminalIds.Count)],
                     CustomerName = $"Customer {random.Next(1, 20)}",
                     DiscretionaryData = discretionaryData
@@ -220,7 +220,7 @@ public class SampleData
         return new ResponseDto
         {
             Transactions = transactions,
-            TotalTransactions = transactions.Count
+            TotalRecordFound = transactions.Count
         };
     }
 

@@ -5,7 +5,7 @@ public class TransactionDto
 {
     public class ResponseDto
     {
-        public int TotalTransactions { get; set; }
+        public int TotalRecordFound { get; set; }
         public List<TransactionDetailDto> Transactions { get; set; } = [];
     }
 
@@ -15,11 +15,11 @@ public class TransactionDto
         public string? TransactionId { get; set; }
         public string? Terminald { get; set; }
         public string? TransactionDttm { get; set; }
-        public decimal TransactionAmount { get; set; }
-        public decimal TransactionFee { get; set; }
-        public string? TransactionCurrency { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Fee { get; set; }
+        public string? Currency { get; set; }
         public string? TransactionType { get; set; }
-        public string? TransactionStatus { get; set; }
+        public string? Status { get; set; }
         public string? CustomerName { get; set; }
         public DiscretionaryDataDto? DiscretionaryData { get; set; }
     }
