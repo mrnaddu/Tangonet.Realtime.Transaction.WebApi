@@ -143,12 +143,14 @@ public class SampleData
 
     private static readonly List<TransactionDetailDto> _transactions = [];
 
-    public static ResponseDto GetSampleResponse(string fromDate, string toDate = null)
+    public static ResponseDto GetSampleResponse(
+        string fromDate, string toDate = null)
     {
         var transactions = new List<TransactionDetailDto>();
         var random = new Random();
 
         DateTime parsedFromDate = DateTime.Parse(fromDate);
+        DateTime fromDateUtc = TimeZoneInfo.ConvertTimeToUtc(parsedFromDate);
         DateTime parsedToDate = string.IsNullOrWhiteSpace(toDate) ? DateTime.UtcNow : DateTime.Parse(toDate);
 
         for (int i = 0; i < 250; i++)
@@ -156,8 +158,8 @@ public class SampleData
             var transactionDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
             var statusUpdatedDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
 
-            if (transactionDate >= parsedFromDate && transactionDate <= parsedToDate &&
-                statusUpdatedDate >= parsedFromDate && statusUpdatedDate <= parsedToDate)
+            if (transactionDate >= fromDateUtc && transactionDate <= parsedToDate &&
+                statusUpdatedDate >= fromDateUtc && statusUpdatedDate <= parsedToDate)
             {
                 decimal transactionAmount = Math.Round(random.NextDecimal(1, 1000), 2);
                 decimal transactionFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
@@ -240,12 +242,15 @@ public class SampleData
                 ];
                 }
 
+                TimeZoneInfo easternTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+                DateTime transactionDateEastern = TimeZoneInfo.ConvertTimeFromUtc(transactionDate, easternTimeZone);
+
                 transactions.Add(new TransactionDetailDto
                 {
                     TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
                     TransactionId = $"TRN{random.Next(100000, 999999)}",
                     Terminald = TerminalIds[random.Next(TerminalIds.Count)],
-                    TransactionDttm = transactionDate.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                    TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")+""+ "EST",
                     Amount = transactionAmount,
                     Fee = transactionFee,
                     Currency = GetRandomTransactionCurreny(),
