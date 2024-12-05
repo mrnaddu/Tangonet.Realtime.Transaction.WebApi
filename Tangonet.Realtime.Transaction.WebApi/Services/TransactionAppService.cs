@@ -28,6 +28,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
             if (DateTime.TryParse(fromDate, out var fromDateParsed))
             {
+                DateTime fromDateUtc = TimeZoneInfo.ConvertTimeToUtc(fromDateParsed);
                 DateTime toDateParsed = DateTime.UtcNow;
 
                 if (!string.IsNullOrEmpty(toDate) && !DateTime.TryParse(toDate, out toDateParsed))
@@ -36,7 +37,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
                 }
 
                 filteredTransactions = filteredTransactions.Where(t =>
-                    DateTime.Parse(t.TransactionDttm) >= fromDateParsed &&
+                    DateTime.Parse(t.TransactionDttm) >= fromDateUtc &&
                     DateTime.Parse(t.TransactionDttm) <= toDateParsed);
             }
 
@@ -56,6 +57,14 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
                 .ToList();
 
             int remainingRecords = totalTransactions - resultTransactions.Count;
+
+            if(sampleResponse is not null)
+            {
+                foreach (var transaction in resultTransactions)
+                {
+                    transaction.TransactionDttm = transaction.TransactionDttm + "EST";
+                }
+            }
 
             var responseDto = new TransactionDto.ResponseDto
             {

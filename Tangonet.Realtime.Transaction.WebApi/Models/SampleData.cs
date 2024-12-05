@@ -250,7 +250,7 @@ public class SampleData
                     TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
                     TransactionId = $"TRN{random.Next(100000, 999999)}",
                     Terminald = TerminalIds[random.Next(TerminalIds.Count)],
-                    TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")+""+ "EST",
+                    TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
                     Amount = transactionAmount,
                     Fee = transactionFee,
                     Currency = GetRandomTransactionCurreny(),
