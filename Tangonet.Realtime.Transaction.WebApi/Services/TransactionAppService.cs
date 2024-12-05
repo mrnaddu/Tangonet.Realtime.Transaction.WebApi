@@ -62,7 +62,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
             {
                 foreach (var transaction in resultTransactions)
                 {
-                    transaction.TransactionDttm = transaction.TransactionDttm + "EST";
+                    transaction.TransactionDttm = $"{transaction.TransactionDttm} EST";
                 }
             }
 
