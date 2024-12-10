@@ -44,14 +44,14 @@ public class TransactionController(
                 validationErrors.Add($"Invalid request ToDateTime. Please use yyyy-MM-dd format. {toDate}");
             }
 
-            if (!string.IsNullOrWhiteSpace(transactionId) && !ValidationHelper.IsGuidFormat(transactionId))
+            if (!string.IsNullOrWhiteSpace(transactionId) && !ValidationHelper.IsAlphaNumericFormat(transactionId))
             {
-                validationErrors.Add($"Invalid request TransactionId. Please use guid format. {transactionId}");
+                validationErrors.Add($"Invalid request TransactionId. Please Check the format. {transactionId}");
             }
 
-            if (!string.IsNullOrWhiteSpace(lastTransactionIdPassed) && !ValidationHelper.IsGuidFormat(lastTransactionIdPassed))
+            if (!string.IsNullOrWhiteSpace(lastTransactionIdPassed) && !ValidationHelper.IsAlphaNumericFormat(lastTransactionIdPassed))
             {
-                validationErrors.Add($"Invalid request LastTransactionId. Please use guid format. {lastTransactionIdPassed}");
+                validationErrors.Add($"Invalid request LastTransactionId. Please Check the format. {lastTransactionIdPassed}");
             }
 
             if (validationErrors.Count != 0)
@@ -59,7 +59,7 @@ public class TransactionController(
                 return BadRequest(ErrorResponse.BadRequest(string.Join(" ", validationErrors), traceId));
             }
 
-            var response = _transactionAppService.GetTransactionAsync(
+            var response = _transactionAppService.GetTransaction(
                 fromDate, toDate, transactionId,lastTransactionIdPassed,batchSize);
 
             if (response == null || response.Transactions == null || response.Transactions.Count == 0)

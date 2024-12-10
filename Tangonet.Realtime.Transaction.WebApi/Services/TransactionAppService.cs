@@ -7,10 +7,10 @@ namespace Tangonet.Realtime.Transaction.WebApi.Services;
 public class TransactionAppService(ILogger<TransactionAppService> logger) : ITransactionAppService
 {
     private readonly ILogger<TransactionAppService> _logger = logger;
-    public TransactionDto.ResponseDto GetTransactionAsync(
+    public TransactionDto.ResponseDto GetTransaction(
         string fromDate, string toDate, string transactionId, string lastTransactionIdPassed, int batchSize)
     {
-        _logger.LogInformation("Received GetTransactionAsync request");
+        _logger.LogInformation("Received GetTransaction request");
 
         try
         {
@@ -23,7 +23,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
             if (!string.IsNullOrEmpty(transactionId))
             {
-                filteredTransactions = filteredTransactions.Where(t => t.TransactionUid.Equals(transactionId, StringComparison.OrdinalIgnoreCase));
+                filteredTransactions = filteredTransactions.Where(t => t.TransactionId.Equals(transactionId, StringComparison.OrdinalIgnoreCase));
             }
 
             if (DateTime.TryParse(fromDate, out var fromDateParsed))
@@ -43,7 +43,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
 
             if (!string.IsNullOrEmpty(lastTransactionIdPassed))
             {
-                filteredTransactions = filteredTransactions.Where(t => string.Compare(t.TransactionUid, lastTransactionIdPassed, StringComparison.OrdinalIgnoreCase) > 0);
+                filteredTransactions = filteredTransactions.Where(t => string.Compare(t.TransactionId, lastTransactionIdPassed, StringComparison.OrdinalIgnoreCase) > 0);
             }
 
             int maxTransactions = 50;
@@ -77,7 +77,7 @@ public class TransactionAppService(ILogger<TransactionAppService> logger) : ITra
         catch (Exception ex)
         {
             _logger.LogError(
-                ex, "Error processing GetTransactionAsync request");
+                ex, "Error processing GetTransaction request");
             throw;
         }
     }

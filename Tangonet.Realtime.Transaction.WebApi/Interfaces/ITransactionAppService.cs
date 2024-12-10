@@ -4,6 +4,6 @@ namespace Tangonet.Realtime.Transaction.WebApi.Interfaces;
 
 public interface ITransactionAppService
 {
-    TransactionDto.ResponseDto GetTransactionAsync(
+    TransactionDto.ResponseDto GetTransaction(
         string fromDate, string toDate, string transactionId, string lastTransactionIdPassed, int batchSize);
 }

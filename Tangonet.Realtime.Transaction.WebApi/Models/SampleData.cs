@@ -4,145 +4,7 @@ namespace Tangonet.Realtime.Transaction.WebApi.Models;
 
 public class SampleData
 {
-    private static readonly Random _random = new();
-
-    private static readonly List<string> TransactionIds =
-    [
-        "5c2b0fe2-f945-4085-a619-d1f7cc74a6a6",
-        "d1f736ff-9517-49ff-9d1e-5a321907623b",
-        "8b07c542-bc97-432f-8352-f5ed35acdbbe",
-        "d8f3a2f5-e82c-41b3-b244-f4b9468ae658",
-        "92fd9b24-bfa2-4442-95f6-cd9b2dbf7ac1",
-        "bbe4a0fc-493d-4c90-b3ad-d0576e3a2767",
-        "e586ae48-9f5f-4609-bd86-cfd9d79b0398",
-        "4d6a36b3-6e89-48b9-86cf-bcb81e736d0f",
-        "8c1a3f80-79a3-4629-92d7-4a29b8be93a1",
-        "3c85c4db-dfbf-4ff0-9f91-e98c3a4d506b",
-        "38b59322-392d-429e-a9b5-5207ff4ad0d7",
-        "6b11d1d4-bba7-4878-b5e5-d5e6c4b80660",
-        "a4c12f76-1e34-4721-bb96-5062f437f4f5",
-        "c038cb5b-ef39-429b-9e68-29a41285e21c",
-        "a7c71239-5b26-4268-bb3a-b43a26be7461",
-        "28712ad0-6c9d-47c4-9a45-4352b875f27d",
-        "9a1d69cd-f3d1-464a-b5b7-ea4ffb9b313f",
-        "4c58e9c6-e1d1-463d-8f60-731c9b87de8f",
-        "a0b03d8a-4c75-4626-9be0-0cd84e3d6a15",
-        "e2e50384-4a16-4ca6-800d-52be1d014f4e",
-        "60e9c23a-5328-4f8b-8d71-60f0a6fd61fe",
-        "34d9e9a5-8c27-4f9f-bb1b-e7b34325f5a9",
-        "3df17367-1c0d-477f-b346-bb5b3d3d9e52",
-        "c72474bb-550d-41d2-b35b-93db4f3455db",
-        "d01a73be-88f9-44a9-831d-bd40d7f4cc77",
-        "3d15a342-1f52-4f0e-9013-f90c459f9e97",
-        "9203702d-72c2-44e3-b745-3d4e1d76b2e7",
-        "c14b648b-941f-406f-95f7-b5e9981fc605",
-        "f72a6798-b95f-4b1b-bd34-9074b50334ae",
-        "fd62c912-8fdb-4b68-9730-19e4f21c7ec4",
-        "2a88dcbf-e497-4d3b-9d38-97f1b24ea0ed",
-        "6f3956ff-83a2-49ab-bc87-3f009c6c4a6d",
-        "6f321033-51f9-4f5c-9437-e4c9a9fe9d97",
-        "218c7d17-40cf-4376-85d4-b6f5b5cf29b2",
-        "8a69e60c-92a0-44f8-bd37-d035a520d8f0",
-        "7d90ecda-66c3-48a1-b65a-9d4c89196ac0",
-        "0049b26c-5a8e-4b0f-b6b1-df8f2044a207",
-        "b07d9b39-baf7-4f42-bf19-9e1d13a8e493",
-        "e924d4d1-3541-47ff-a7f1-bd4431a68a33",
-        "24f9074b-b518-4fe1-a786-f88ff1301b7f",
-        "4b54344f-d423-4b89-bad1-59c3b800c567",
-        "0fa056fc-2fd0-48e4-a746-c0a4d944ec6e",
-        "d7a4472f-9c74-473b-b544-57501f937a4f",
-        "0ad42f0c-fc8a-4022-9b70-6e40b2a34c81",
-        "6c823453-6cbb-4799-bff7-b78b9e4565a6",
-        "5a89f4a7-2b68-4204-82bc-b6fe9f8e5a31",
-        "61b74577-55de-40e5-b22e-4192dbe9f764",
-        "dbeb86a1-f1a6-4a78-9c60-85c77b8a699f",
-        "0a9411a1-73b4-4fc2-9736-742a27abfc1d",
-        "5bbf5d29-512b-4637-b9c5-d14907e405ff",
-        "6c1c5153-96d7-4304-b703-12c3b199444b",
-        "ec0f7c35-1b57-44e7-b467-c7f8f5b8538f",
-        "e51e1108-b77b-4b26-bb3c-96cf36a493cb",
-        "5cd55088-40a5-4635-941d-cb51e23816d5",
-        "0c72438b-2f36-465b-a8cc-b5ac9499d5c6",
-        "f8ba84c0-bd62-4db0-b9f2-b038f5fdf69f",
-        "1e5a73d7-64c2-44a1-b595-28b99475a3f3",
-        "7b5ac1d5-dc98-44bc-8c9f-51719f115b87",
-        "bb5372d0-0b66-40a1-8d0c-9ff861def6d1",
-        "deea271f-18cf-4503-b85d-4a77d3be9e3f",
-        "58fd61f2-5663-4d64-8f42-b9e09b66c5e1",
-        "7f94ef43-bac3-4b93-9f4b-bcf8798b2cd5",
-        "12ec8702-c0db-4f84-9a42-62ac506ab8a2",
-        "6a3d1f7f-d9e4-4681-b38d-d8b5383bb712",
-        "039b8535-61ca-4192-b07f-62bb94db5bc0",
-        "e5f7e02d-2c4d-46f1-909e-896b78cb7c94",
-        "06003f0f-cf53-4532-8bdf-8e71772f20e7",
-        "d47963ca-1a38-4268-a69a-9356b6db3022",
-        "2c516d07-e195-4b92-a5e1-56883c861f68",
-        "9c8d9e7b-80cc-450b-8834-f2f5ea52904b",
-        "8b2011f5-f3fe-4d27-81f5-c72fa8b6823f",
-        "e74298b2-d5f5-4e7b-87bc-98b8eb6c42b2",
-        "b0ff7b37-1576-4d6e-82d7-256a35a6ac64",
-        "dfaaf16a-6df7-4535-8b89-8e3bbfd337a0",
-        "438bf05a-0728-4e7c-84c9-b5ff73d0eeb0",
-        "08c99331-1ab3-4632-91e5-b43175a9b37f",
-        "3c6e35e1-98f7-4d6b-86ae-b3e07d8ca946",
-        "b140e80b-b47b-4e50-bf5f-1b6c87669c2c",
-        "f7ca8b53-f81a-462b-bc5c-902a52be2a2c",
-        "d45c9515-c0f3-470d-9ff0-73e4f21271c9",
-        "9da16738-df32-4374-8b79-44f074b4e9a0",
-        "2e8e62a0-f06e-4b51-a2a1-7c7bcfc95702",
-        "52c5be42-cd39-4e07-a5e9-cb4de5eebfa0",
-        "ed09863f-d28a-4ab0-a0c7-f26fd144a428",
-        "19798779-b7a0-4d2b-9d4b-d0c67b3d2726",
-        "b3ffeb57-b2c0-46b9-96a5-5b1709cbf4be",
-        "17e79910-fc5f-48cc-b1e0-d0494a82f7c7",
-        "24dbdf74-2d39-4e69-9b19-b91b7fa78d25",
-        "81d8467f-2320-42b4-bcd6-d9053877ebee",
-        "f17413c3-df2d-4b2a-b1b3-5a7bcf5a1fbb",
-        "e6d80d9b-b7c3-474b-907f-82317856e592",
-        "a245fd6d-7241-4e2b-b385-0b16548b15e3",
-        "07906e7b-67b6-4787-90b4-5401b74b178f",
-        "f5f4b472-9d2b-451d-8686-d7b393b56a67",
-        "62f277b7-8c9d-4557-8353-e06a4da98750",
-        "8d45a347-0c6f-4f8a-b349-92c47d4d1d7e",
-        "7da1c870-91f8-45b4-bc8f-e827ecdf8f90",
-        "8750dcb3-548d-4c99-8752-500c2ea080fe",
-        "c4db8b92-c1e1-44a0-9939-8b8c5c72fa0a",
-        "ee0307b1-bc8b-41a5-9d28-57fc57e4b6a6",
-        "d8633f30-b4c5-4fd8-8b7f-0ea3628c801b",
-        "3b3d8f47-f8e7-4f4e-9d90-c12fa98610b2",
-        "dfb393e3-c53a-4c3d-b6ec-df4b9a915b89",
-        "a7501a33-ea75-42d9-b51f-baddf6785b7a",
-        "1e92c02b-f4c0-49ca-b347-3dfb087e57d5",
-        "b577e647-6ea3-488a-bf96-e5eb3514ec99",
-        "6b1843f1-b570-4567-b6bb-0da3ad6eac7b",
-        "b76c94d3-8a23-45f9-b0c9-71b1ad48e309",
-        "7c8f0d9a-d7cf-44fd-9ff7-84b0dcb2670a",
-        "048015cb-15d7-4162-b4e2-b909d8855d5b",
-        "42ec34eb-9e2c-4c72-b0da-b7d586a0c3e0",
-        "a960ae69-2647-4c76-8cfc-dff920a19862",
-        "d13d90c2-3ea4-4f74-8b07-5917fbc5fcb7",
-        "6fd450c8-6c89-4e57-8f7f-7f71ab1a53b6",
-        "f3fa592e-f845-48d0-b5fd-c0a4d98f5363",
-        "19993a83-c575-47e5-8e5c-87be34950678",
-        "4a51d0f6-e98e-4c25-80d2-8de7b9f0d8d6",
-        "8659de0a-575b-4044-9a0c-77993cdb6112",
-        "af38c8ae-3d8f-4da9-b5c1-0b7e5b6cc088",
-        "86b45b8f-10d0-47ea-95db-bd201af3e5ad",
-        "f25b30a9-32cf-42ac-b107-e94349ae13ff",
-        "0c5d35b7-f8e9-47b5-bb0d-e080c3e2c700",
-        "8f85c1ff-d67e-4fd5-bc25-0399260a79c9",
-        "0c90e8e0-2cf9-48da-8007-cd0de84f6049"
-    ];
-
-
-    private static readonly List<string> TerminalIds =
-    [
-        "terminal-001", "terminal-002", "terminal-003", "terminal-004", "terminal-005",
-        "terminal-006", "terminal-007", "terminal-008", "terminal-009", "terminal-010"
-    ];
-
-    public static ResponseDto GetSampleResponse(
-        string fromDate, string toDate = null)
+    public static ResponseDto GetSampleResponse(string fromDate, string toDate = null)
     {
         var transactions = new List<TransactionDetailDto>();
         var random = new Random();
@@ -151,112 +13,2658 @@ public class SampleData
         DateTime fromDateUtc = TimeZoneInfo.ConvertTimeToUtc(parsedFromDate);
         DateTime parsedToDate = string.IsNullOrWhiteSpace(toDate) ? DateTime.UtcNow : DateTime.Parse(toDate);
 
-        for (int i = 0; i < 250; i++)
+        if (fromDateUtc > parsedToDate)
         {
-            var transactionDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
-            var statusUpdatedDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
+            throw new ArgumentException("fromDate cannot be after toDate.");
+        }
 
-            if (transactionDate >= fromDateUtc && transactionDate <= parsedToDate &&
-                statusUpdatedDate >= fromDateUtc && statusUpdatedDate <= parsedToDate)
+        var transactionDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
+        var statusUpdatedDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)).AddSeconds(random.Next(0, 86400));
+
+        bool isTransactionDateInRange = transactionDate >= fromDateUtc && transactionDate <= parsedToDate;
+        bool isStatusUpdatedDateInRange = statusUpdatedDate >= fromDateUtc && statusUpdatedDate <= parsedToDate;
+
+        if (isTransactionDateInRange && isStatusUpdatedDateInRange)
+        {
+            TimeZoneInfo easternTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            DateTime transactionDateEastern = TimeZoneInfo.ConvertTimeFromUtc(transactionDate, easternTimeZone);
+
+            transactions.Add(new TransactionDetailDto
             {
-                decimal transactionAmount = Math.Round(random.NextDecimal(1, 1000), 2);
-                decimal transactionFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
-                string transactionType = GetRandomTransactionType();
-
-                var discretionaryData = new DiscretionaryDataDto();
-
-                if (transactionType == "BPY")
+                TransactionUid = "5e316b16-b860-459d-bb11-7dc23f460432",
+                TransactionId = $"TRN1000",
+                Terminald = "terminal-001",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
                 {
-                    int billCount = random.Next(1, 5); 
-                    discretionaryData.BillPay = [];
+                    BillPay =
+                    [
+                        new BillPayDto
+                            {
+                                Biller = "Biller 1",
+                                ReferenceNumber = "FLTP1:0:1",
+                                BillAccountNumber = "******** **** 1234",
+                                Amount = 100,
+                                Fee = 10
+                            },
+                            new BillPayDto
+                            {
+                                Biller = "Biller 2",
+                                ReferenceNumber = "FLTP1:0:2",
+                                BillAccountNumber = "**** **** **** 5678",
+                                Amount = 200,
+                                Fee = 20
+                            }
+                    ]
+                }
+            });
 
-                    decimal totalBillAmount = 0;
-                    decimal totalBillFee = 0;
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "0fb066d1-de0c-41ac-aa88-1cd1d85cd053",
+                TransactionId = $"TRN1001",
+                Terminald = "terminal-002",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 200,
+                Fee = 20,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                            {
+                                Receiver = "User 1",
+                                ReceiveMethod = "10 Min Service",
+                                ReferenceNumber = "FLTP1:0:1",
+                                Amount = 100,
+                                Fee = 10
+                            },
+                            new RemittanceSendDto
+                            {
+                                Receiver = "User 2",
+                                ReceiveMethod = "1 Day Service",
+                                ReferenceNumber = "FLTP1:0:2",
+                                Amount = 200,
+                                Fee = 20
+                            }
+                    ]
+                }
+            });
 
-                    for (int j = 0; j < billCount; j++)
-                    {
-                        decimal billAmount = Math.Round(random.NextDecimal(1, 1000), 2);
-                        decimal billFee = Math.Round(random.NextDecimal(0.1m, 50), 2);
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "8006c93d-1adb-453c-b393-ef8fb977591f",
+                TransactionId = $"TRN1002",
+                Terminald = "terminal-003",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                            {
+                                TicketCount = 2,
+                                Tickets =
+                                [
+                                    new TicketDto
+                                    {
+                                        TicketUid = "3f9a864d-143d-4198-96b4-a1f6a630c628",
+                                        TicketId = "CYYDDD0001",
+                                        TicketAllocated = true,
+                                        TicketRedeemedSuccessfully = true,
+                                        TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                        TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                        TicketStatus = 'R',
+                                        FaceValue = 100,
+                                        Notes = "Ticket Redeemed successfully."
+                                    },
+                                    new TicketDto
+                                    {
+                                        TicketUid = "c391e701-e7a9-434b-a78d-4674d78249db",
+                                        TicketId = "CYYDDD0002",
+                                        TicketAllocated = true,
+                                        TicketRedeemedSuccessfully = false,
+                                        TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                        TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                        TicketStatus = 'V',
+                                        FaceValue = 200,
+                                        Notes = "Ticket inquiry successfully."
+                                    }
+                                ]
+                            }
+                    ]
+                }
+            });
 
-                        discretionaryData.BillPay.Add(new BillPayDto
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "207c2add-0725-413b-9198-11427241c5d3",
+                TransactionId = $"TRN1003",
+                Terminald = "terminal-004",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 50,
+                Fee = 5,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                            {
+                                Biller = "Biller 1",
+                                ReferenceNumber = "FLTP1:0:1",
+                                BillAccountNumber = "******** **** 1234",
+                                Amount = 50,
+                                Fee = 5
+                            }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "21776933-1320-4998-bc6a-3d665433c427",
+                TransactionId = $"TRN1004",
+                Terminald = "terminal-005",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                            {
+                                Biller = "Biller 2",
+                                ReferenceNumber = "FLTP1:0:2",
+                                BillAccountNumber = "**** **** **** 5678",
+                                Amount = 100,
+                                Fee = 10
+                            }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "0109c798-da99-45aa-8f44-35a3a5ac9011",
+                TransactionId = $"TRN1005",
+                Terminald = "terminal-006",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 200,
+                Fee = 20,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                            {
+                                Biller = "Biller 1",
+                                ReferenceNumber = "FLTP1:0:1",
+                                BillAccountNumber = "******** **** 1234",
+                                Amount = 200,
+                                Fee = 20
+                            }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "87d401e6-2136-42a4-b796-a25112675349",
+                TransactionId = $"TRN1006",
+                Terminald = "terminal-007",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                            {
+                                TicketCount = 1,
+                                Tickets =
+                                [
+                                    new TicketDto
+                                    {
+                                        TicketUid = "3f9a864d-143d-4198-96b4-a1f6a630c628",
+                                        TicketId = "CYYDDD0001",
+                                        TicketAllocated = true,
+                                        TicketRedeemedSuccessfully = true,
+                                        TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                        TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                        TicketStatus = 'R',
+                                        FaceValue = 300,
+                                        Notes = "Ticket Redeemed successfully."
+                                    }
+                                ]
+                            }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "37648e17-d16c-4824-a9d0-af1bf5f04859",
+                TransactionId = $"TRN1007",
+                Terminald = "terminal-008",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 400,
+                Fee = 40,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                            {
+                                TicketCount = 1,
+                                Tickets =
+                                [
+                                    new TicketDto
+                                    {
+                                        TicketUid = "c391e701-e7a9-434b-a78d-4674d78249db",
+                                        TicketId = "CYYDDD0002",
+                                        TicketAllocated = true,
+                                        TicketRedeemedSuccessfully = false,
+                                        TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                        TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                        TicketStatus = 'V',
+                                        FaceValue = 400,
+                                        Notes = "Ticket inquiry successfully."
+                                    }
+                                ]
+                            }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "dbd9eb01-5262-4747-961f-1fafbed3603d",
+                TransactionId = "TRN1008",
+                Terminald = "terminal-016",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 800,
+                Fee = 80,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
                         {
-                            Biller = GenerateBillerName(),
-                            ReferenceNumber = GenerateReferenceNumber(),
-                            BillAccountNumber = GenerateBillAccountNumber(),
-                            Amount = billAmount,
-                            Fee = billFee
-                        });
-
-                        totalBillAmount += billAmount;
-                        totalBillFee += billFee;
-                    }
-                    transactionAmount = totalBillAmount;
-                    transactionFee = totalBillFee;
+                            Receiver = "User 5",
+                            ReceiveMethod = "Express Service",
+                            ReferenceNumber = "FLTP1:0:5",
+                            Amount = 800,
+                            Fee = 80
+                        }
+                    ]
                 }
+            });
 
-                if (transactionType == "RSND")
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "3fb9fb7b-7668-414c-a128-002a36837ec1",
+                TransactionId = "TRN1009",
+                Terminald = "terminal-015",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 700,
+                Fee = 70,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
                 {
-                    discretionaryData.RemittanceSend =
-                [
-                    new()
-                    {
-                        Receiver = GenerateReciverName(),
-                        ReceiveMethod = GetRandomReceiveMethod(),
-                        ReferenceNumber = GenerateReferenceNumber(),
-                        Amount = transactionAmount,
-                        Fee = transactionFee
-                    }
-                ];
-                }
-
-                if (transactionType == "TKTP")
-                {
-                    int ticketCount = random.Next(1, 10);
-                    var tickets = new List<TicketDto>();
-
-                    for (int j = 0; j < ticketCount; j++)
-                    {
-                        tickets.Add(new TicketDto
+                    BillPay =
+                    [
+                        new BillPayDto
                         {
-                            TicketUid = Guid.NewGuid().ToString(),
-                            TicketId = GenerateTicketId(),
-                            TicketAllocated = true,
-                            TicketRedeemedSuccessfully = random.Next(0, 2) == 1,
-                            TicketCreatedDateTime = DateTime.UtcNow,
-                            TicketCompletedDateTime = DateTime.UtcNow.AddDays(-random.Next(1, 30)),
-                            TicketStatus = GetRandomTicketStatus(),
-                            FaceValue = random.Next(1, 100),
-                            Notes = GetRandomTicketNote()
-                        });
-                    }
+                            Biller = "Biller 5",
+                            ReferenceNumber = "FLTP1:0:5",
+                            BillAccountNumber = "**** **** **** 3333",
+                            Amount = 700,
+                            Fee = 70
+                        }
+                    ]
+                }
+            });
 
-                    discretionaryData.PlayTicket =
-                [
-                    new()
-                    {
-                        TicketCount = ticketCount,
-                        Tickets = tickets
-                    }
-                ];
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "2943c85d-c787-4f4c-af5b-96601fb693a1",
+                TransactionId = "TRN1010",
+                Terminald = "terminal-014",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 600,
+                Fee = 60,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 4,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "9i9i9i9i-9i9i-9i9i-9i9i-9i9i9i9i",
+                                    TicketId = "CYYDDD0005",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 150,
+                                    Notes = "Ticket Redeemed successfully."
+                                },
+                                new TicketDto
+                                {
+                                    TicketUid = "a0a0a0a0-a0a0-a0a0-a0a0-a0a0a0a0",
+                                    TicketId = "CYYDDD0006",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = false,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'V',
+                                    FaceValue = 200,
+                                    Notes = "Ticket inquiry successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "6ddec94c-a939-4634-b950-d91ecc1ff277",
+                TransactionId = "TRN1011",
+                Terminald = "terminal-013",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 350,
+                Fee = 35,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 4",
+                            ReceiveMethod = "Instant Service",
+                            ReferenceNumber = "FLTP1:0:4",
+                            Amount = 350,
+                            Fee = 35
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "ccaa4cc8-94fa-4660-aee1-4db48025f789",
+                TransactionId = "TRN1012",
+                Terminald = "terminal-012",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 400,
+                Fee = 40,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 4",
+                            ReferenceNumber = "FLTP1:0:4",
+                            BillAccountNumber = "**** **** **** 2222",
+                            Amount = 400,
+                            Fee = 40
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "0c0784f5-9759-4070-919a-a1e6c1e00bfd",
+                TransactionId = "TRN1013",
+                Terminald = "terminal-011",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 250,
+                Fee = 25,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 3,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "4d4d4d4d-4d4d-4d4d-4d4d-4d4d4d4d",
+                                    TicketId = "CYYDDD0003",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Ticket Redeemed successfully."
+                                },
+                                new TicketDto
+                                {
+                                    TicketUid = "5e5e5e5e-5e5e-5e5e-5e5e-5e5e5e5e",
+                                    TicketId = "CYYDDD0004",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = false,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'V',
+                                    FaceValue = 150,
+                                    Notes = "Ticket inquiry successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "b08b4f93-de9a-4d77-9f39-ac10a8ae1d06",
+                TransactionId = "TRN1014",
+                Terminald = "terminal-010",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 3",
+                            ReceiveMethod = "3 Day Service",
+                            ReferenceNumber = "FLTP1:0:3",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "4d55eb89-4de5-4729-a00a-151d026e213c",
+                TransactionId = "TRN1015",
+                Terminald = "terminal-009",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 500,
+                Fee = 50,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 3",
+                            ReferenceNumber = "FLTP1:0:3",
+                            BillAccountNumber = "**** **** **** 1111",
+                            Amount = 500,
+                            Fee = 50
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "86e38404-796e-4e23-9c26-43bb9c51a27f",
+                TransactionId = "TRN1016",
+                Terminald = "terminal-002",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 2,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "1c1c1c1c-1c1c-1c1c1c1c",
+                                    TicketId = "CYYDDD0001",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 50,
+                                    Notes = "Ticket Redeemed successfully."
+                                },
+                                new TicketDto
+                                {
+                                    TicketUid = "2d2d2d2d-2d2d-2d2d2d2d",
+                                    TicketId = "CYYDDD0002",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = false,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'V',
+                                    FaceValue = 100,
+                                    Notes = "Ticket inquiry successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "99a33adf-a815-4970-b189-08ea5f1617b4",
+                TransactionId = "TRN1017",
+                Terminald = "terminal-003",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 200,
+                Fee = 20,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 2",
+                            ReceiveMethod = "2 Day Service",
+                            ReferenceNumber = "FLTP1:0:2",
+                            Amount = 200,
+                            Fee = 20
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "4604554c-be2a-4f25-b53a-17220a99c488",
+                TransactionId = "TRN1018",
+                Terminald = "terminal-004",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 2",
+                            ReferenceNumber = "FLTP1:0:2",
+                            BillAccountNumber = "**** **** **** 4444",
+                            Amount = 300,
+                            Fee = 30
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "b3093cc3-720f-46bd-8575-c6b8b74d1c78",
+                TransactionId = "TRN1019",
+                Terminald = "terminal-005",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 400,
+                Fee = 40,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "6f6f6f6f-6f6f-6f6f6f6f",
+                                    TicketId = "CYYDDD0001",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 25,
+                                    Notes = "Ticket Redeemed successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "ac91fd07-7663-4647-80a7-f856c09cfb57",
+                TransactionId = "TRN1020",
+                Terminald = "terminal-006",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 500,
+                Fee = 50,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 1",
+                            ReceiveMethod = "1 Day Service",
+                            ReferenceNumber = "FLTP1:0:1",
+                            Amount = 500,
+                            Fee = 50
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "4de05aa6-2efc-4959-b515-3d45efcbc24b",
+                TransactionId = "TRN1021",
+                Terminald = "terminal-007",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 600,
+                Fee = 60,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 1",
+                            ReferenceNumber = "FLTP1:0:1",
+                            BillAccountNumber = "**** **** **** 5555",
+                            Amount = 600,
+                            Fee = 60
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "6fafcaa8-c89e-42bd-82b8-7a8975b9952b",
+                TransactionId = "TRN1022",
+                Terminald = "terminal-008",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 700,
+                Fee = 70,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "9i9i9i9i-9i9i-9i9i9i9i",
+                                    TicketId = "CYYDDD0001",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 10,
+                                    Notes = "Ticket Redeemed successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "e96c2ecb-5842-4788-8b27-0e84bdcb8c16",
+                TransactionId = "TRN1023",
+                Terminald = "terminal-001",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 800,
+                Fee = 80,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 0",
+                            ReceiveMethod = "Free Service",
+                            ReferenceNumber = "FLTP1:0:0",
+                            Amount = 800,
+                            Fee = 80
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "94eeb498-cc5a-43a3-8165-b203529e21a4",
+                TransactionId = "TRN1024",
+                Terminald = "terminal-014",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1000,
+                Fee = 100,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 0",
+                            ReferenceNumber = "FLTP1:0:0",
+                            BillAccountNumber = "**** **** **** 3333",
+                            Amount = 1000,
+                            Fee = 100
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "4abbedde-616f-4455-aee1-f67ab3e8105a",
+                TransactionId = "TRN1025",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1200,
+                Fee = 120,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "1a1a1a1a-1a1a-1a1a1a1a",
+                                    TicketId = "CYYDDD0001",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 5,
+                                    Notes = "Ticket Redeemed successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "1201830e-5314-4354-864e-7482f4060b0e",
+                TransactionId = "TRN1026",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1400,
+                Fee = 140,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 4",
+                            ReceiveMethod = "4 Day Service",
+                            ReferenceNumber = "FLTP1:0:4",
+                            Amount = 1400,
+                            Fee = 140
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "bc5a4779-4d13-4c6b-9353-350952337277",
+                TransactionId = "TRN1027",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1600,
+                Fee = 160,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 4",
+                            ReferenceNumber = "FLTP1:0:4",
+                            BillAccountNumber = "**** **** **** 2222",
+                            Amount = 1600,
+                            Fee = 160
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "c99ee6f0-6305-4a68-ad66-dc1edd1c8139",
+                TransactionId = "TRN1028",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1800,
+                Fee = 180,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "2b2b2b2b-2b2b-2b2b2b2b",
+                                    TicketId = "CYYDDD0001",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 2,
+                                    Notes = "Ticket Redeemed successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "1201830e-5314-4354-864e-7482f4060b0e",
+                TransactionId = "TRN1029",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1400,
+                Fee = 140,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 4",
+                            ReceiveMethod = "4 Day Service",
+                            ReferenceNumber = "FLTP1:0:4",
+                            Amount = 1400,
+                            Fee = 140
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "bc5a4779-4d13-4c6b-9353-350952337277",
+                TransactionId = "TRN1030",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1600,
+                Fee = 160,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 4",
+                            ReferenceNumber = "FLTP1:0:4",
+                            BillAccountNumber = "**** **** **** 2222",
+                            Amount = 1600,
+                            Fee = 160
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "c99ee6f0-6305-4a68-ad66-dc1edd1c8139",
+                TransactionId = "TRN1031",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 1800,
+                Fee = 180,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "2b2b2b2b-2b2b-2b2b2b2b",
+                                    TicketId = "CYYDDD0001",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 2,
+                                    Notes = "Ticket Redeemed successfully."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "dc6d603a-e954-4d61-b214-3eb96d478002",
+                TransactionId = "TRN1032",
+                Terminald = "terminal-001",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 1",
+                            ReferenceNumber = "BPY1",
+                            BillAccountNumber = "**** **** **** 1234",
+                            Amount = 50,
+                            Fee = 5
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "8df68caf-95df-40fb-a9c9-c07d2e83be3f",
+                TransactionId = "TRN1033",
+                Terminald = "terminal-002",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 1",
+                            ReceiveMethod = "10 Min Service",
+                            ReferenceNumber = "RSND1",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "d4254555-e7b3-43bb-90fc-675217ef4072",
+                TransactionId = "TRN1034",
+                Terminald = "terminal-003",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "44444444-4444-4444-4444-444444444444",
+                                    TicketId = "TKTP1",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "1c1d608a-b583-4438-961b-21959d79f8db",
+                TransactionId = "TRN1035",
+                Terminald = "terminal-004",
+                TransactionDttm = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 60,
+                Fee = 6,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 2",
+                            ReferenceNumber = "BPY2",
+                            BillAccountNumber = "**** **** **** 5678",
+                            Amount = 60,
+                            Fee = 6
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "f7bf5195-5d19-4990-839a-8d11a1044787",
+                TransactionId = "TRN1036",
+                Terminald = "terminal-005",
+                TransactionDttm = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 125,
+                Fee = 12,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 2",
+                            ReceiveMethod = "1 Day Service",
+                            ReferenceNumber = "RSND2",
+                            Amount = 125,
+                            Fee = 12
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "d5d5d5d5-d5d5-d5d5d5d5d5d5",
+                TransactionId = "TRN1037",
+                Terminald = "terminal-006",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 250,
+                Fee = 12,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "55555555-5555-555555555555",
+                                    TicketId = "TKTP2",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 50,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "1c1d608a-b583-4438-961b-21959d79f8db",
+                TransactionId = "TRN1038",
+                Terminald = "terminal-007",
+                TransactionDttm = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 60,
+                Fee = 6,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 3",
+                            ReferenceNumber = "BPY3",
+                            BillAccountNumber = "**** **** **** 9012",
+                            Amount = 60,
+                            Fee = 6
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "f7bf5195-5d19-4990-839a-8d11a1044787",
+                TransactionId = "TRN1039",
+                Terminald = "terminal-008",
+                TransactionDttm = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 125,
+                Fee = 12,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 3",
+                            ReceiveMethod = "2 Day Service",
+                            ReferenceNumber = "RSND3",
+                            Amount = 125,
+                            Fee = 12
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "d5d5d5d5-d5d5-d5d5d5d5d5d5",
+                TransactionId = "TRN1040",
+                Terminald = "terminal-009",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 250,
+                Fee = 12,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "66666666-6666-666666666666",
+                                    TicketId = "TKTP3",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 50,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "1c1d608a-b583-4438-961b-21959d79f8db",
+                TransactionId = "TRN1041",
+                Terminald = "terminal-010",
+                TransactionDttm = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 60,
+                Fee = 6,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 4",
+                            ReferenceNumber = "BPY4",
+                            BillAccountNumber = "**** **** **** 3456",
+                            Amount = 60,
+                            Fee = 6
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "f7bf5195-5d19-4990-839a-8d11a1044787",
+                TransactionId = "TRN1042",
+                Terminald = "terminal-011",
+                TransactionDttm = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 125,
+                Fee = 12,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 4",
+                            ReceiveMethod = "4 Day Service",
+                            ReferenceNumber = "RSND4",
+                            Amount = 125,
+                            Fee = 12
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "67b76214-95e2-4de4-b294-6c3e9a24e14c",
+                TransactionId = "TRN1043",
+                Terminald = "terminal-012",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                Amount = 200,
+                Fee=12,
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "77777777-7777-777777777777",
+                                    TicketId = "TKTP4",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 50,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "68bd879d-8a1d-44d7-9764-402b90bdba48",
+                TransactionId = "TRN1044",
+                Terminald = "terminal-013",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 5",
+                            ReferenceNumber = "BPY5",
+                            BillAccountNumber = "**** **** **** 7890",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "d3f8cb28-33f3-4bf1-9965-3e8531ceedb2",
+                TransactionId = "TRN1045",
+                Terminald = "terminal-014",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 5",
+                            ReceiveMethod = "8 Day Service",
+                            ReferenceNumber = "RSND5",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "884d7d99-26b5-473b-ae8f-93a758cc831a",
+                TransactionId = "TRN1046",
+                Terminald = "terminal-015",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "88888888-8888-888888888888",
+                                    TicketId = "TKTP5",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add (new TransactionDetailDto 
+            {
+                TransactionUid = "9fafec61-6c9f-44a7-a947-e9467c950c28",
+                TransactionId = "TRN1047",
+                Terminald = "terminal-016",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 6",
+                            ReferenceNumber = "BPY6",
+                            BillAccountNumber = "**** **** **** 1234",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "a9d44f28-1526-4a9b-b297-d4ebb585376e",
+                TransactionId = "TRN1048",
+                Terminald = "terminal-017",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 6",
+                            ReceiveMethod = "10 Day Service",
+                            ReferenceNumber = "RSND6",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "50c3fb0c-a301-4f2d-8060-88a14ebe8615",
+                TransactionId = "TRN1049",
+                Terminald = "terminal-018",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "99999999-9999-999999999999",
+                                    TicketId = "TKTP6",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "26e60dc3-48bb-487c-8492-29ecff68af0b",
+                TransactionId = "TRN1050",
+                Terminald = "terminal-019",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 7",
+                            ReferenceNumber = "BPY7",
+                            BillAccountNumber = "**** **** **** 5678",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
                 }
 
-                TimeZoneInfo easternTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-                DateTime transactionDateEastern = TimeZoneInfo.ConvertTimeFromUtc(transactionDate, easternTimeZone);
+            });
 
-                transactions.Add(new TransactionDetailDto
+            transactions.Add (new TransactionDetailDto
+            {
+                TransactionUid = "8d66008f-a02d-4a61-9232-1c54097801c4",
+                TransactionId = "TRN1051",
+                Terminald = "terminal-020",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
                 {
-                    TransactionUid = TransactionIds[random.Next(TransactionIds.Count)],
-                    TransactionId = $"TRN{random.Next(100000, 999999)}",
-                    Terminald = TerminalIds[random.Next(TerminalIds.Count)],
-                    TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
-                    Amount = transactionAmount,
-                    Fee = transactionFee,
-                    Currency = GetRandomTransactionCurreny(),
-                    TransactionType = transactionType,
-                    Status = GetRandomTransactionStatus(),
-                    DiscretionaryData = discretionaryData
-                });
-            }
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 7",
+                            ReceiveMethod = "12 Day Service",
+                            ReferenceNumber = "RSND7",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "d574e46c-a5e6-43d2-9b77-a2d9b1ac4b45",
+                TransactionId = "TRN1052",
+                Terminald = "terminal-021",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "aaaaaaaa-aaaa-aaaaaaaaaaaa",
+                                    TicketId = "TKTP7",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add (new TransactionDetailDto
+            {
+                TransactionUid = "b70f3c96-9f94-4127-8cdb-5a0f22c202b8",
+                TransactionId = "TRN1053",
+                Terminald = "terminal-022",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 8",
+                            ReferenceNumber = "BPY8",
+                            BillAccountNumber = "**** **** **** 9012",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "ca4d2099-e67c-4438-a6af-896fb9851adf",
+                TransactionId = "TRN1054",
+                Terminald = "terminal-023",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 8",
+                            ReceiveMethod = "14 Day Service",
+                            ReferenceNumber = "RSND8",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "26803eb2-ce11-4249-93df-6cc80040a0dd",
+                TransactionId = "TRN1055",
+                Terminald = "terminal-024",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "bbbbbbbb-bbbb-bbbbbbbbbbbb",
+                                    TicketId = "TKTP8",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "8788c34a-ea33-48f4-a2d8-ee74e5858a4d",
+                TransactionId = "TRN1056",
+                Terminald = "terminal-025",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 9",
+                            ReferenceNumber = "BPY9",
+                            BillAccountNumber = "**** **** **** 3456",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "ae079229-ead9-43cb-b9ae-26247758ab40",
+                TransactionId = "TRN1057",
+                Terminald = "terminal-026",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 9",
+                            ReceiveMethod = "16 Day Service",
+                            ReferenceNumber = "RSND9",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "42927b10-bc5f-4a8f-bf8c-39229a2198a6",
+                TransactionId = "TRN1058",
+                Terminald = "terminal-027",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "cccccccc-cccc-cccccccccccc",
+                                    TicketId = "TKTP9",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {   
+                TransactionUid = "0476595a-811c-44ba-aaab-a5eee14b41b2",
+                TransactionId = "TRN1059",
+                Terminald = "terminal-028",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 10",
+                            ReferenceNumber = "BPY10",
+                            BillAccountNumber = "**** **** **** 7890",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "5ca60b2a-4ba4-4cd0-b4e7-136a47dfb1ab",
+                TransactionId = "TRN1060",
+                Terminald = "terminal-029",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 10",
+                            ReceiveMethod = "18 Day Service",
+                            ReferenceNumber = "RSND10",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "2f8e006a-1552-44bc-88b1-ecb27839c324",
+                TransactionId = "TRN1061",
+                Terminald = "terminal-030",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "dddddddd-dddd-dddddddddddd",
+                                    TicketId = "TKTP10",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add (new TransactionDetailDto
+            {
+                TransactionUid = "dda683f8-ba37-48a1-ac88-b7ac1eced51e",
+                TransactionId = "TRN1062",
+                Terminald = "terminal-031",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 11",
+                            ReferenceNumber = "BPY11",
+                            BillAccountNumber = "**** **** **** 1357",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "c8f957f5-1ca0-4ce9-9269-7559a4a41222",
+                TransactionId = "TRN1063",
+                Terminald = "terminal-032",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 11",
+                            ReceiveMethod = "20 Day Service",
+                            ReferenceNumber = "RSND11",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "37e90689-5171-41ae-843e-9de6fce78d7c",
+                TransactionId = "TRN1064",
+                Terminald = "terminal-033",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "eeeeeeee-eeee-eeeeeeeeeeee",
+                                    TicketId = "TKTP11",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "38dc14bb-2e18-4d36-a1e6-396ab9b6f748",
+                TransactionId = "TRN1065",
+                Terminald = "terminal-034",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 12",
+                            ReferenceNumber = "BPY12",
+                            BillAccountNumber = "**** **** **** 2468",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "6b5a37ea-e85a-4d3a-93be-b9c60a3e248c",
+                TransactionId = "TRN1066",
+                Terminald = "terminal-035",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 12",
+                            ReceiveMethod = "22 Day Service",
+                            ReferenceNumber = "RSND12",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "c93dff91-45a2-46b8-848e-1d55077a31f8",
+                TransactionId = "TRN1068",
+                Terminald = "terminal-036",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "ffffffff-ffff-ffffffffffff",
+                                    TicketId = "TKTP12",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "5ce53903-116d-45fe-83c3-1526e62ecdbc",
+                TransactionId = "TRN1069",
+                Terminald = "terminal-037",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 13",
+                            ReferenceNumber = "BPY13",
+                            BillAccountNumber = "**** **** **** 3579",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "8df3a8cf-50ba-47cd-b4f9-fab425309b40",
+                TransactionId = "TRN1070",
+                Terminald = "terminal-038",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 13",
+                            ReceiveMethod = "24 Day Service",
+                            ReferenceNumber = "RSND13",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "fc20270b-8430-4801-a333-0b75f1fb81f9",
+                TransactionId = "TRN1071",
+                Terminald = "terminal-039",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "gggggggg-gggg-gggggggggggg",
+                                    TicketId = "TKTP13",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "ae58575e-cb24-4b3a-9643-61a72b6b5fd3",
+                TransactionId = "TRN1072",
+                Terminald = "terminal-040",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 14",
+                            ReferenceNumber = "BPY14",
+                            BillAccountNumber = "**** **** **** 4680",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add (new TransactionDetailDto
+            {
+                TransactionUid = "cfc503fd-8340-48dd-bdd7-19a4987f155a",
+                TransactionId = "TRN1073",
+                Terminald = "terminal-041",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 14",
+                            ReceiveMethod = "26 Day Service",
+                            ReferenceNumber = "RSND14",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "0a22f1f9-1c03-40a7-96a1-bbc05d36df75",
+                TransactionId = "TRN1074",
+                Terminald = "terminal-042",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "hhhhhhhh-hhhh-hhhhhhhhhhhh",
+                                    TicketId = "TKTP14",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "e45a1ab3-8481-4524-9442-6d88413c3650",
+                TransactionId = "TRN1075",
+                Terminald = "terminal-043",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 15",
+                            ReferenceNumber = "BPY15",
+                            BillAccountNumber = "**** **** **** 5791",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "1c578935-f6df-4e59-bc3f-a783d4386f74",
+                TransactionId = "TRN1076",
+                Terminald = "terminal-044",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 15",
+                            ReceiveMethod = "28 Day Service",
+                            ReferenceNumber = "RSND15",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "451419c9-7975-410b-aba9-1c696818b63f",
+                TransactionId = "TRN1077",
+                Terminald = "terminal-045",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "iiiiiiii-iiii-iiiiiiiiiiii",
+                                    TicketId = "TKTP15",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "024624b6-5818-4153-808f-a2e20195b93f",
+                TransactionId = "TRN1078",
+                Terminald = "terminal-046",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 16",
+                            ReferenceNumber = "BPY16",
+                            BillAccountNumber = "**** **** **** 6802",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "33aab5c8-cf84-4cf4-af8c-954500c1009e",
+                TransactionId = "TRN1079",
+                Terminald = "terminal-047",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 16",
+                            ReceiveMethod = "30 Day Service",
+                            ReferenceNumber = "RSND16",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "a50d5a00-bed8-4f07-bb10-480b32e94dd9",
+                TransactionId = "TRN1080",
+                Terminald = "terminal-048",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "jjjjjjjj-jjjj-jjjjjjjjjjjj",
+                                    TicketId = "TKTP16",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "51a4be72-e2fc-4812-ac84-bafbf2367676",
+                TransactionId = "TRN1081",
+                Terminald = "terminal-049",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 17",
+                            ReferenceNumber = "BPY17",
+                            BillAccountNumber = "**** **** **** 7913",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "2a41f4a7-83f6-491b-85b5-cd56fb48606a",
+                TransactionId = "TRN1082",
+                Terminald = "terminal-050",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 150,
+                Fee = 15,
+                Currency = "USD",
+                TransactionType = "RSND",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    RemittanceSend =
+                    [
+                        new RemittanceSendDto
+                        {
+                            Receiver = "User 17",
+                            ReceiveMethod = "32 Day Service",
+                            ReferenceNumber = "RSND17",
+                            Amount = 150,
+                            Fee = 15
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "a500ba61-03b3-42ef-a024-02f468730ac7",
+                TransactionId = "TRN1083",
+                Terminald = "terminal-051",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 300,
+                Fee = 30,
+                Currency = "USD",
+                TransactionType = "TKTP",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    PlayTicket =
+                    [
+                        new PlayTicketDto
+                        {
+                            TicketCount = 1,
+                            Tickets =
+                            [
+                                new TicketDto
+                                {
+                                    TicketUid = "kkkkkkkk-kkkk-kkkkkkkkkkkk",
+                                    TicketId = "TKTP17",
+                                    TicketAllocated = true,
+                                    TicketRedeemedSuccessfully = true,
+                                    TicketCreatedDateTime = DateTime.Parse(transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss")),
+                                    TicketCompletedDateTime = transactionDateEastern.AddDays(-random.Next(1, 30)),
+                                    TicketStatus = 'R',
+                                    FaceValue = 100,
+                                    Notes = "Redeemed ticket."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+
+            transactions.Add(new TransactionDetailDto
+            {
+                TransactionUid = "94c85e0a-d920-4190-ab55-cc41335abd5d",
+                TransactionId = "TRN1084",
+                Terminald = "terminal-052",
+                TransactionDttm = transactionDateEastern.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Amount = 100,
+                Fee = 10,
+                Currency = "USD",
+                TransactionType = "BPY",
+                Status = "C",
+                DiscretionaryData = new DiscretionaryDataDto
+                {
+                    BillPay =
+                    [
+                        new BillPayDto
+                        {
+                            Biller = "Biller 18",
+                            ReferenceNumber = "BPY18",
+                            BillAccountNumber = "**** **** **** 8024",
+                            Amount = 100,
+                            Fee = 10
+                        }
+                    ]
+                }
+            });
         }
 
         return new ResponseDto
@@ -265,97 +2673,5 @@ public class SampleData
             TotalRecordsFound = transactions.Count
         };
     }
-
-    private static string GenerateTicketId()
-    {
-        int numericPart = _random.Next(100000, 999999);
-        return $"CYYDDD{numericPart:D6}"; 
-    }
-
-    private static string GenerateReciverName()
-    {
-        int numericPart = _random.Next(1,99);
-        return $"User {numericPart}";
-    }
-    private static string GenerateBillerName()
-    {
-        int numericPart = _random.Next(1, 99);
-        return $"Biller {numericPart}";
-    }
-
-    private static char GetRandomTicketStatus()
-    {
-        char[] states = ['R', 'V', 'E']; 
-        return states[_random.Next(states.Length)]; 
-    }
-
-    private static string GetRandomTransactionStatus()
-    {
-        string[] states = ["X", "V", "C"];
-        return states[_random.Next(states.Length)];
-    }
-
-    private static string GetRandomTransactionType()
-    {
-        string[] states = ["BPY", "RSND", "TKTP"];
-        return states[_random.Next(states.Length)];
-    }
-
-    private static string GetRandomTransactionCurreny()
-    {
-        string[] states = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "NZD", "SEK"];
-        return states[_random.Next(states.Length)];
-    }
-
-    private static string GenerateBillAccountNumber()
-    {
-        int lastFourDigits = _random.Next(1000, 10000); 
-                                                        
-        string maskedPart = new('*', 12); 
-                                                 
-        return $"{maskedPart}{lastFourDigits:D4}"; 
-    }
-
-    private static string GenerateReferenceNumber()
-    {
-        int firstPart = _random.Next(0, 10); 
-        int secondPart = _random.Next(0, 10); 
-        return $"FLTP1:{firstPart}:{secondPart}";
-    }
-
-    private static string GetRandomReceiveMethod()
-    {
-        string[] receiveMethods = ["10 Min Service", "1 Day Service", "2 Day Service", "3 Day Service"];
-        return receiveMethods[_random.Next(receiveMethods.Length)];
-    }
-
-    private static string GetRandomTicketNote()
-    {
-        string[] notes =
-        {
-            "Ticket purchased successfully.",
-            "Please keep this ticket safe.",
-            "This ticket is valid for one entry.",
-            "Check the date and time of your event.",
-            "No refunds or exchanges.",
-            "Enjoy your event!",
-            "This ticket is non-transferable.",
-            "Lost tickets cannot be replaced.",
-            "Present this ticket at the entrance.",
-            "Thank you for your purchase!"
-        };
-
-        return notes[_random.Next(notes.Length)]; 
-    }
 }
 
-public static class RandomExtensions
-{
-    public static decimal NextDecimal(
-        this Random random, decimal minValue, decimal maxValue)
-    {
-        decimal range = maxValue - minValue;
-        decimal sample = (decimal)random.NextDouble();
-        return minValue + sample * range;
-    }
-}

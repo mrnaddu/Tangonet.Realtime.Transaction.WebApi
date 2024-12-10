@@ -42,17 +42,6 @@ public static class ValidationHelper
         return false; 
     }
 
-    public static bool IsTransactionState(string transactionState)
-    {
-        if (string.IsNullOrEmpty(transactionState))
-        {
-            return false;
-        }
-        transactionState = transactionState.ToUpper();
-
-        return transactionState == "C" || transactionState == "Y" || transactionState == "P";
-    }
-
     public static bool IsGuidFormat(string guid)
     {
         return Guid.TryParse(guid, out _);
