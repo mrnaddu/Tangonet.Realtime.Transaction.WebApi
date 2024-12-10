@@ -141,8 +141,6 @@ public class SampleData
         "terminal-006", "terminal-007", "terminal-008", "terminal-009", "terminal-010"
     ];
 
-    private static readonly List<TransactionDetailDto> _transactions = [];
-
     public static ResponseDto GetSampleResponse(
         string fromDate, string toDate = null)
     {
@@ -283,29 +281,6 @@ public class SampleData
     {
         int numericPart = _random.Next(1, 99);
         return $"Biller {numericPart}";
-    }
-
-    public static List<TransactionDetailDto> SearchTransactions(
-        string transactionId = null, string transactionType = null, string terminalUid = null)
-    {
-        var query = _transactions.AsQueryable();
-
-        if (!string.IsNullOrEmpty(transactionId))
-        {
-            query = query.Where(t => t.TransactionUid.Equals(transactionId, StringComparison.OrdinalIgnoreCase));
-        }
-
-        if (!string.IsNullOrEmpty(transactionType))
-        {
-            query = query.Where(t => t.TransactionType.Equals(transactionType, StringComparison.OrdinalIgnoreCase));
-        }
-
-        if (!string.IsNullOrEmpty(terminalUid))
-        {
-            query = query.Where(t => t.Terminald.Equals(terminalUid, StringComparison.OrdinalIgnoreCase));
-        }
-
-        return [.. query];
     }
 
     private static char GetRandomTicketStatus()
